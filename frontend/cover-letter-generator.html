@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Letter Generator | ResumeAnalyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/cover-letter.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="hero cv-hero">
+    <div class="hero-nav">
+      <a href="./menu.html" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> Back to Menu
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+    <div class="hero-content">
+      <h1>Professional Cover Letter Generator</h1>
+      <p>Create tailored, compelling cover letters in minutes with AI-powered assistance</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+    <div class="cover-letter-builder">
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>Cover Letter Details</h2>
+        
+        <div class="form-group">
+          <label for="fullName">Your Full Name *</label>
+          <input type="text" id="fullName" placeholder="e.g., John Smith" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 123-4567">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="linkedIn">LinkedIn Profile</label>
+            <input type="url" id="linkedIn" placeholder="https://linkedin.com/in/johnsmith">
+          </div>
+          <div class="form-group">
+            <label for="website">Portfolio Website</label>
+            <input type="url" id="website" placeholder="https://johnsmith.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hireManagerName">Hiring Manager Name</label>
+            <input type="text" id="hireManagerName" placeholder="e.g., Jane Doe">
+          </div>
+          <div class="form-group">
+            <label for="companyName">Company Name *</label>
+            <input type="text" id="companyName" placeholder="e.g., Google" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="jobTitle">Job Title *</label>
+          <input type="text" id="jobTitle" placeholder="e.g., Senior Software Engineer" required>
+        </div>
+
+        <div class="form-group">
+          <label for="jobDescription">Job Description</label>
+          <textarea id="jobDescription" placeholder="Paste the job description here (optional but recommended). This helps us tailor the letter to match the role's requirements." rows="6"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="resumeHighlights">Key Achievements & Highlights</label>
+          <textarea id="resumeHighlights" placeholder="Bullet your top accomplishments, metrics, and relevant experience&#10;e.g.&#10;- Led a team of 5 engineers to deliver 3 major projects&#10;- Increased system performance by 40%&#10;- 8+ years in software development" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="personalityTone">Tone & Style</label>
+          <select id="personalityTone">
+            <option value="professional">Professional & Formal</option>
+            <option value="friendly">Friendly & Approachable</option>
+            <option value="creative">Creative & Enthusiastic</option>
+            <option value="technical">Technical & Detail-Oriented</option>
+            <option value="confident">Confident & Bold</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="whyCompany">Why This Company? (Optional)</label>
+          <textarea id="whyCompany" placeholder="What attracts you to this company? What are your goals there?" rows="3"></textarea>
+        </div>
+
+        <button class="btn-primary" onclick="generateCoverLetter()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Generate Cover Letter
+        </button>
+        <button class="btn-secondary" onclick="resetForm()">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          Clear Form
+        </button>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <div class="preview-header">
+          <h3>
+            <i class="fa-solid fa-eye"></i>
+            Live Preview
+          </h3>
+          <div class="preview-actions">
+            <button class="icon-btn" onclick="downloadPDF()" title="Download PDF">
+              <i class="fa-solid fa-file-pdf"></i>
+            </button>
+            <button class="icon-btn" onclick="copyToClipboard()" title="Copy to Clipboard">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+            <button class="icon-btn" onclick="printLetter()" title="Print">
+              <i class="fa-solid fa-print"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="coverLetterPreview" class="cover-letter-preview">
+          <div class="letter-placeholder">
+            <p>
+              <i class="fa-solid fa-pen-fancy"></i>
+              Fill in the form and click "Generate Cover Letter" to see your personalized cover letter here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates Section -->
+    <section class="templates-section">
+      <h2>Cover Letter Templates</h2>
+      <p>Choose from professionally designed templates</p>
+      
+      <div class="templates-grid">
+        <div class="template-card active" onclick="selectTemplate('classic')">
+          <div class="template-preview">
+            <div class="template-line"></div>
+            <div class="template-line short"></div>
+            <div class="template-line"></div>
+            <div class="template-line"></div>
+            <div class="template-line short"></div>
+          </div>
+          <h4>Classic</h4>
+          <p>Traditional formatted letter</p>
+        </div>
+
+        <div class="template-card" onclick="selectTemplate('modern')">
+          <div class="template-preview modern">
+            <div class="template-accent"></div>
+            <div class="template-line"></div>
+            <div class="template-line short"></div>
+            <div class="template-line"></div>
+            <div class="template-line"></div>
+          </div>
+          <h4>Modern</h4>
+          <p>Contemporary design</p>
+        </div>
+
+        <div class="template-card" onclick="selectTemplate('minimal')">
+          <div class="template-preview minimal">
+            <div class="template-line"></div>
+            <div class="template-line"></div>
+            <div class="template-line short"></div>
+            <div class="template-line"></div>
+          </div>
+          <h4>Minimal</h4>
+          <p>Clean and concise</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+      <h2>Writing Tips</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <h4>Be Specific</h4>
+          <p>Reference specific details from the job posting to show you've done your research.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h4>Tell Your Story</h4>
+          <p>Connect your experience to the company's needs. Explain how you can add value.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-check-double"></i>
+          </div>
+          <h4>Show Enthusiasm</h4>
+          <p>Let your genuine interest in the role and company shine through your words.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-spell-check"></i>
+          </div>
+          <h4>Proofread</h4>
+          <p>Always check for grammar and spelling errors. A single mistake can hurt your chances.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h4>Keep It Concise</h4>
+          <p>Aim for 3-4 paragraphs total. Recruiters skim, so make every sentence count.</p>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-icon">
+            <i class="fa-solid fa-person-hiking"></i>
+          </div>
+          <h4>Call to Action</h4>
+          <p>End with a clear next step, like "I look forward to discussing how I can contribute."</p>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 ResumeAnalyzer. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/cover-letter.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install backend requirements",
+			"type": "shell",
+			"command": "C:/Users/Haleema/AppData/Local/Programs/Python/Python313/python.exe",
+			"args": [
+				"-m",
+				"pip",
+				"install",
+				"-r",
+				"backend/requirements.txt"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Echo test",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"echo",
+				"task-ok"
+			],
+			"isBackground": false
+		}
+	]
+}

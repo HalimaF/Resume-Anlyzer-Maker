@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.venv/
+venv/
+.env
+
+# OCR and model cache
+~/.EasyOCR/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: smart-resume-analyzer-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app
+    autoDeploy: true

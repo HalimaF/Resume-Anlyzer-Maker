@@ -1,0 +1,267 @@
+{
+  "jobs": [
+    {
+      "id": "senior-software-engineer",
+      "title": "Senior Software Engineer",
+      "industry": "Technology",
+      "experience": "5-8 years",
+      "description": "Senior Software Engineer experienced in full-stack development, system design, and team leadership.",
+      "keywordRequirements": [
+        "Python",
+        "JavaScript",
+        "System Design",
+        "Database Design",
+        "API Development",
+        "Cloud Platforms",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Git"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Technical Skills",
+        "Projects",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "LinkedIn profile",
+        "Years of experience",
+        "Technical skills listed",
+        "Metrics/achievements",
+        "Education information",
+        "Clear formatting"
+      ]
+    },
+    {
+      "id": "data-scientist",
+      "title": "Data Scientist",
+      "industry": "Technology/Analytics",
+      "experience": "3-6 years",
+      "description": "Data Scientist with expertise in machine learning, statistical analysis, and data visualization.",
+      "keywordRequirements": [
+        "Python",
+        "Machine Learning",
+        "SQL",
+        "Data Analysis",
+        "Pandas",
+        "NumPy",
+        "Scikit-learn",
+        "TensorFlow",
+        "Tableau",
+        "R",
+        "Statistics",
+        "Data Visualization"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Skills",
+        "Projects/Portfolio",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "GitHub profile",
+        "Portfolio link",
+        "ML frameworks mentioned",
+        "Statistical methods",
+        "Data tools listed",
+        "Metrics-driven achievements"
+      ]
+    },
+    {
+      "id": "product-manager",
+      "title": "Product Manager",
+      "industry": "Technology/Business",
+      "experience": "4-7 years",
+      "description": "Product Manager with strong leadership, cross-functional collaboration, and product strategy skills.",
+      "keywordRequirements": [
+        "Product Strategy",
+        "User Experience",
+        "Data Analysis",
+        "Agile",
+        "Leadership",
+        "Roadmap Planning",
+        "Stakeholder Management",
+        "A/B Testing",
+        "Metrics",
+        "User Research"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Core Competencies",
+        "Achievements",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "LinkedIn profile",
+        "Product launches",
+        "Cross-functional teams",
+        "Revenue impact",
+        "User growth metrics",
+        "Leadership experience"
+      ]
+    },
+    {
+      "id": "ux-designer",
+      "title": "UX/UI Designer",
+      "industry": "Design/Technology",
+      "experience": "3-6 years",
+      "description": "UX/UI Designer with portfolio of work demonstrating user research, wireframing, and design systems.",
+      "keywordRequirements": [
+        "Figma",
+        "User Research",
+        "Wireframing",
+        "Prototyping",
+        "Design Systems",
+        "Usability Testing",
+        "Interaction Design",
+        "Visual Design",
+        "Adobe XD",
+        "Sketch"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Design Skills",
+        "Portfolio/Projects",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "Portfolio link",
+        "Design tools listed",
+        "User-centered design",
+        "Metrics/impact",
+        "Design systems",
+        "Research methods"
+      ]
+    },
+    {
+      "id": "devops-engineer",
+      "title": "DevOps Engineer",
+      "industry": "Technology/Infrastructure",
+      "experience": "3-7 years",
+      "description": "DevOps Engineer with expertise in CI/CD pipelines, cloud infrastructure, and monitoring solutions.",
+      "keywordRequirements": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "AWS",
+        "Azure",
+        "Terraform",
+        "Jenkins",
+        "Linux",
+        "Monitoring",
+        "Automation",
+        "Python",
+        "Bash"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Technical Skills",
+        "Certifications",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "GitHub profile",
+        "Cloud certifications",
+        "Infrastructure projects",
+        "Automation scripts",
+        "Uptime metrics",
+        "Deployment frequency"
+      ]
+    },
+    {
+      "id": "marketing-manager",
+      "title": "Marketing Manager",
+      "industry": "Marketing/Business",
+      "experience": "4-8 years",
+      "description": "Marketing Manager with proven track record in campaign management, brand strategy, and team leadership.",
+      "keywordRequirements": [
+        "Campaign Management",
+        "Brand Strategy",
+        "Content Marketing",
+        "Analytics",
+        "Marketing Automation",
+        "Social Media",
+        "SEO",
+        "Budget Management",
+        "Creative Direction",
+        "Market Research"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Core Competencies",
+        "Achievements",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "LinkedIn profile",
+        "Campaign metrics",
+        "ROI metrics",
+        "Team size managed",
+        "Budget managed",
+        "Brand/product launches"
+      ]
+    },
+    {
+      "id": "sales-executive",
+      "title": "Sales Executive",
+      "industry": "Sales/Business",
+      "experience": "3-7 years",
+      "description": "Sales Executive with strong track record of closing deals, territory expansion, and relationship management.",
+      "keywordRequirements": [
+        "Sales Strategy",
+        "Relationship Management",
+        "Territory Expansion",
+        "Negotiation",
+        "CRM",
+        "Pipeline Management",
+        "Account Management",
+        "Revenue Growth",
+        "Sales Forecasting",
+        "Client Retention"
+      ],
+      "requiredSections": [
+        "Contact Information",
+        "Professional Summary",
+        "Work Experience",
+        "Key Achievements",
+        "Skills",
+        "Education"
+      ],
+      "atsChecklist": [
+        "Email address",
+        "Phone number",
+        "LinkedIn profile",
+        "Sales metrics",
+        "Revenue numbers",
+        "Deal size",
+        "Customer retention",
+        "Territory expansion"
+      ]
+    }
+  ]
+}

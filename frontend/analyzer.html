@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Resume Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="hero">
+      <div class="hero-nav">
+        <a href="./menu.html" class="back-link">
+          <i class="fa-solid fa-arrow-left"></i> Back to Menu
+        </a>
+      </div>
+      <div>
+        <p class="badge"><i class="fa-solid fa-bolt"></i> AI-Powered Analysis</p>
+        <h1>Smart Resume Analyzer</h1>
+        <p class="subtitle">
+          Upload your resume and select a target job to get role-specific analysis, ATS optimization,
+          and personalized recommendations.
+        </p>
+      </div>
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+        <span>Dark Mode</span>
+      </button>
+    </header>
+
+    <main class="container">
+      <section class="panel upload-panel">
+        <h2><i class="fa-solid fa-file-arrow-up"></i> Upload & Select Job</h2>
+        <p class="panel-text">Accepted formats: PDF, PNG, JPG, JPEG, WEBP</p>
+
+        <label for="apiBase" class="input-label">API Base URL</label>
+        <input id="apiBase" type="text" placeholder="http://localhost:5000" />
+
+        <label for="jobSelect" class="input-label">Select Target Job Role (Optional)</label>
+        <select id="jobSelect" class="form-select">
+          <option value="">-- Any Role --</option>
+        </select>
+        <div id="selectedJobInfo" class="job-info" style="display: none;">
+          <h4 id="jobTitle"></h4>
+          <p id="jobDescription"></p>
+          <div id="jobRequirements"></div>
+        </div>
+
+        <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload resume">
+          <input id="resumeInput" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden />
+          <i class="fa-regular fa-file-lines"></i>
+          <p><strong>Drag & drop</strong> your resume here</p>
+          <p class="small">or click to browse files</p>
+        </div>
+
+        <p id="selectedFile" class="selected-file">No file selected</p>
+
+        <label for="jobDescription" class="input-label">Additional Job Description (Optional)</label>
+        <textarea
+          id="jobDescription"
+          rows="4"
+          placeholder="Paste any specific job description for custom matching..."
+        ></textarea>
+
+        <button id="analyzeBtn" class="primary-btn">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Analyze Resume
+        </button>
+      </section>
+
+      <section class="results-grid">
+        <article class="panel metric-card">
+          <h3><i class="fa-solid fa-gauge-high"></i> Resume Score</h3>
+          <p id="scoreValue" class="score">--</p>
+          <div class="progress-track"><div id="scoreBar" class="progress-fill"></div></div>
+        </article>
+
+        <article class="panel result-card">
+          <h3><i class="fa-solid fa-circle-check"></i> Detected Skills</h3>
+          <div id="detectedSkills" class="chips"></div>
+        </article>
+
+        <article class="panel result-card">
+          <h3><i class="fa-solid fa-circle-exclamation"></i> Missing Skills</h3>
+          <div id="missingSkills" class="chips"></div>
+        </article>
+
+        <article class="panel result-card">
+          <h3><i class="fa-solid fa-key"></i> Top Resume Keywords</h3>
+          <div id="topKeywords" class="chips"></div>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-comment-dots"></i> Professional Feedback</h3>
+          <ul id="summaryList" class="list"></ul>
+          <h4>Suggestions</h4>
+          <ul id="suggestionsList" class="list"></ul>
+        </article>
+
+        <article class="panel result-card wide" id="jdMatchSection">
+          <h3><i class="fa-solid fa-briefcase"></i> Job Match Analysis</h3>
+          <p id="jdScore">Add a job description or select a role to enable match analysis.</p>
+          <div class="split-columns">
+            <div>
+              <h4>Matched Keywords</h4>
+              <div id="matchedKeywords" class="chips"></div>
+            </div>
+            <div>
+              <h4>Missing JD Keywords</h4>
+              <div id="missingKeywords" class="chips"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel result-card wide" id="industryCheckSection">
+          <h3><i class="fa-solid fa-star"></i> Industry-Level Validation</h3>
+          <p id="industryCheckInfo" class="panel-text">Select a job role to see industry-specific validation.</p>
+          <div id="industryCheckResults"></div>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-list-check"></i> ATS Structure Insights</h3>
+          <p id="structureScore" class="panel-text">Upload a resume to view structure coverage.</p>
+          <div class="split-columns">
+            <div>
+              <h4>Present Sections</h4>
+              <div id="presentSections" class="chips"></div>
+            </div>
+            <div>
+              <h4>Missing Sections</h4>
+              <div id="missingSections" class="chips"></div>
+            </div>
+          </div>
+          <h4>ATS Tips</h4>
+          <ul id="atsTips" class="list"></ul>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-clipboard-check"></i> ATS Checker</h3>
+          <p id="atsScore" class="panel-text">Run analysis to view ATS checklist score.</p>
+          <div class="split-columns">
+            <div>
+              <h4>Passed Checks</h4>
+              <div id="atsPassedChecks" class="chips"></div>
+            </div>
+            <div>
+              <h4>Failed Checks</h4>
+              <div id="atsFailedChecks" class="chips"></div>
+            </div>
+          </div>
+          <h4>ATS Recommendations</h4>
+          <ul id="atsRecommendations" class="list"></ul>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-layer-group"></i> Skills Explorer</h3>
+          <p class="panel-text">Search and preview the full predefined skills catalog used by the analyzer.</p>
+          <div class="inline-controls">
+            <input id="skillSearch" type="text" placeholder="Search skills (e.g., docker, nlp, react)" />
+            <button id="searchSkillsBtn" class="secondary-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              Search Skills
+            </button>
+          </div>
+          <div id="skillsCatalog" class="chips"></div>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-download"></i> Export Report</h3>
+          <p class="panel-text">Download a PDF summary of the latest analysis results.</p>
+          <button id="downloadReportBtn" class="secondary-btn" disabled>
+            <i class="fa-solid fa-file-pdf"></i>
+            Download PDF Report
+          </button>
+        </article>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="alert"></div>
+
+    <script src="./js/analyzer.js"></script>
+  </body>
+</html>

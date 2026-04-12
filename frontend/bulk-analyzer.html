@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bulk CV Analyzer - Smart Career Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="hero">
+      <div class="hero-nav">
+        <a href="./menu.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Menu</a>
+      </div>
+      <div>
+        <p class="badge"><i class="fa-solid fa-people-group"></i> Recruitment Suite</p>
+        <h1>Bulk CV Analyzer</h1>
+        <p class="subtitle">Upload multiple resumes, auto-rank candidates, and generate comparison reports for efficient hiring decisions.</p>
+      </div>
+      <button id="bulkThemeToggle" class="theme-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+    </header>
+
+    <main class="container">
+      <section class="panel upload-panel">
+        <h2><i class="fa-solid fa-upload"></i> Upload Resumes</h2>
+        <p class="panel-text">Upload multiple resumes at once (PDF, DOCX, TXT, PNG, JPG, JPEG, WEBP)</p>
+
+        <label for="bulkApiBase" class="input-label">API Base URL</label>
+        <input id="bulkApiBase" type="text" placeholder="http://localhost:5000" />
+
+        <label for="bulkJobDesc" class="input-label">Job Description (Optional)</label>
+        <textarea id="bulkJobDesc" rows="4" placeholder="Paste job description for targeted candidate matching..."></textarea>
+
+        <div id="bulkDropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload resumes">
+          <input id="bulkResumeInput" type="file" multiple accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" hidden />
+          <i class="fa-regular fa-file-lines"></i>
+          <p><strong>Drag & drop</strong> multiple resumes here</p>
+          <p class="small">or click to select files</p>
+        </div>
+
+        <p id="selectedFileCount" class="selected-file">No files selected</p>
+
+        <button id="bulkAnalyzeBtn" class="primary-btn"><i class="fa-solid fa-play"></i> Analyze & Rank Candidates</button>
+      </section>
+
+      <section id="resultsSection" style="display: none;">
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-ranking-star"></i> Ranked Candidates</h3>
+          
+          <div class="filter-bar">
+            <input id="candidateSearch" type="text" placeholder="Search candidate name..." />
+            <select id="scoreFilter">
+              <option value="">All Scores</option>
+              <option value="85">Excellent (85+)</option>
+              <option value="70">Good (70+)</option>
+              <option value="55">Fair (55+)</option>
+              <option value="0">All</option>
+            </select>
+          </div>
+
+          <div id="candidatesTable" class="candidates-table"></div>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-chart-line"></i> Analytics & Insights</h3>
+          <div class="analytics-grid">
+            <div class="metric">
+              <p class="metric-label">Total Candidates</p>
+              <p id="totalCandidates" class="metric-value">0</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Average Score</p>
+              <p id="avgScore" class="metric-value">0</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Top Candidate</p>
+              <p id="topCandidate" class="metric-value">--</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Excellent Fits (85+)</p>
+              <p id="excellentCount" class="metric-value">0</p>
+            </div>
+          </div>
+          
+          <h4 style="margin-top: 24px;">Average Score Distribution</h4>
+          <div id="scoreDistribution" class="distribution-chart"></div>
+        </article>
+
+        <article class="panel result-card wide">
+          <h3><i class="fa-solid fa-download"></i> Export Results</h3>
+          <div style="display: flex; gap: 12px;">
+            <button id="exportCsvBtn" class="secondary-btn"><i class="fa-solid fa-file-csv"></i> Export as CSV</button>
+            <button id="exportPdfBtn" class="secondary-btn"><i class="fa-solid fa-file-pdf"></i> Export Detailed Report</button>
+            <button id="exportJsonBtn" class="secondary-btn"><i class="fa-solid fa-code"></i> Export as JSON</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="alert"></div>
+
+    <script src="./js/bulk-analyzer.js"></script>
+  </body>
+</html>
