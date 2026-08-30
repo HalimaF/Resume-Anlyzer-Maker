@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-08-30T10:43:04.788Z",
+        "reason": "Claude: ATS Safe CV template must render identically on any machine that opens the PDF, so it uses a universally installed face. A webfont here would defeat the template's purpose. Scoped to cv-maker.css .cv-doc.tpl-ats only; the app UI uses Newsreader + Schibsted Grotesk."
+      }
+    ]
+  }
+}

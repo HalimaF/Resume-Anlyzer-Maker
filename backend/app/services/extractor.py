@@ -3,12 +3,14 @@ from typing import Any, Optional
 
 import numpy as np
 from docx import Document
+from flask import current_app
 
 
 _reader: Optional[Any] = None
+_rapidocr_engine: Optional[Any] = None
 
 
-def _get_ocr_reader() -> Any:
+def _get_easyocr_reader() -> Any:
     """Initialize EasyOCR once and reuse it across requests."""
     global _reader
     if _reader is None:
@@ -20,49 +22,100 @@ def _get_ocr_reader() -> Any:
     return _reader
 
 
+def _get_rapidocr_engine() -> Any:
+    """Initialize RapidOCR once and reuse it across requests."""
+    global _rapidocr_engine
+    if _rapidocr_engine is None:
+        try:
+            from rapidocr_onnxruntime import RapidOCR  # type: ignore[import-not-found]
+        except ImportError as exc:
+            raise ImportError("rapidocr-onnxruntime is required for RapidOCR extraction.") from exc
+        _rapidocr_engine = RapidOCR()
+    return _rapidocr_engine
+
+
+def _extract_with_easyocr(image_input: Any) -> list[str]:
+    reader = _get_easyocr_reader()
+    result = reader.readtext(image_input, detail=0, paragraph=True)
+    return [line for line in result if isinstance(line, str) and line.strip()]
+
+
+def _extract_with_rapidocr(image_input: Any) -> list[str]:
+    engine = _get_rapidocr_engine()
+    result, _elapsed = engine(image_input)
+    if not result:
+        return []
+
+    lines: list[str] = []
+    for item in result:
+        # RapidOCR returns tuples in shape (box, text, score).
+        if isinstance(item, (list, tuple)) and len(item) >= 2:
+            text = item[1]
+            if isinstance(text, str) and text.strip():
+                lines.append(text)
+    return lines
+
+
+def _extract_ocr_text(image_input: Any) -> str:
+    """Extract text using configured engine with fallback for resilience."""
+    engine = "rapidocr"
+    try:
+        engine = str(current_app.config.get("OCR_ENGINE", "rapidocr")).strip().lower()
+    except RuntimeError:
+        # Allows use in scripts/tests outside an app context.
+        pass
+
+    if engine == "easyocr":
+        return "\n".join(_extract_with_easyocr(image_input)).strip()
+
+    try:
+        return "\n".join(_extract_with_rapidocr(image_input)).strip()
+    except Exception:
+        # Fallback keeps OCR available if RapidOCR model/runtime fails.
+        return "\n".join(_extract_with_easyocr(image_input)).strip()
+
+
 def extract_text_from_pdf(file_path: Path) -> str:
-    """Extract text from PDF; fallback to OCR for scanned/image-based pages."""
+    """Extract text from PDF; fallback to OCR only when no embedded text exists."""
     try:
         import fitz
     except ImportError as exc:
         raise ImportError("PyMuPDF is required for PDF extraction.") from exc
 
     text_chunks = []
-    page_images = []
+    pages_without_text = []
     with fitz.open(file_path) as doc:
-        for page in doc:
+        for index, page in enumerate(doc):
             page_text = str(page.get_text("text") or "")
             if page_text.strip():
                 text_chunks.append(page_text)
-                continue
-
-            # Rasterize pages with no embedded text for OCR fallback.
-            pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
-            page_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
-            page_images.append(page_array)
+            else:
+                pages_without_text.append(index)
 
     direct_text = "\n".join(text_chunks).strip()
     if direct_text:
         return direct_text
 
-    if not page_images:
+    if not pages_without_text:
         return ""
 
-    reader = _get_ocr_reader()
+    # OCR is expensive; perform it only for fully scanned/image-only PDFs.
     ocr_chunks = []
-    for image in page_images:
-        result = reader.readtext(image, detail=0, paragraph=True)
-        if result:
-            ocr_chunks.append("\n".join(result))
+    with fitz.open(file_path) as doc:
+        for page_index in pages_without_text:
+            page = doc.load_page(page_index)
+            pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), alpha=False)
+            page_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
+            page_text = _extract_ocr_text(page_array)
+            if page_text:
+                ocr_chunks.append(page_text)
 
     return "\n".join(ocr_chunks).strip()
 
 
 def extract_text_from_image(file_path: Path) -> str:
-    """Extract text from image resumes using EasyOCR."""
-    reader = _get_ocr_reader()
-    result = reader.readtext(str(file_path), detail=0, paragraph=True)
-    return "\n".join(result).strip()
+    """Extract text from image resumes using configured OCR engine."""
+    return _extract_ocr_text(str(file_path))
 
 
 def extract_resume_text(file_path: Path) -> str:

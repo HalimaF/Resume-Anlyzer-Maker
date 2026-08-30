@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from werkzeug.exceptions import RequestEntityTooLarge
+from werkzeug.exceptions import HTTPException, RequestEntityTooLarge
 from flask_cors import CORS
 
 from .config import Config
@@ -12,7 +12,8 @@ def create_app() -> Flask:
     app.config.from_object(Config)
 
     # Enable CORS so frontend deployments can call the API from another domain.
-    CORS(app)
+    # Lock this down in production by setting CORS_ORIGINS.
+    CORS(app, resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}})
 
     @app.errorhandler(RequestEntityTooLarge)
     def handle_file_too_large(_error):
@@ -20,11 +21,22 @@ def create_app() -> Flask:
         return (
             jsonify(
                 {
-                    "error": f"File too large. Maximum allowed size is {max_size_mb:.0f} MB.",
+                    "error": f"Upload too large. Maximum total request size is {max_size_mb:.0f} MB.",
                 }
             ),
             413,
         )
+
+    @app.errorhandler(HTTPException)
+    def handle_http_exception(error: HTTPException):
+        # Keep 4xx/5xx responses as JSON without swallowing their status code.
+        return jsonify({"error": error.description}), error.code or 500
+
+    @app.errorhandler(Exception)
+    def handle_unexpected(error):
+        # Never leak a stack trace as HTML; the frontend always expects JSON.
+        app.logger.exception("Unhandled error while serving request")
+        return jsonify({"error": f"Unexpected server error: {error}"}), 500
 
     app.register_blueprint(api_bp, url_prefix="/api")
 

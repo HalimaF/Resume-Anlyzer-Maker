@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Match Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Match — Career Desk</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("sca.theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" || t === "dark"
+              ? t
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          );
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -19,179 +36,256 @@
     />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-
-    <header class="hero">
-      <div class="hero-nav">
-        <a href="./menu.html" class="back-link">
-          <i class="fa-solid fa-arrow-left"></i> Back to Menu
-        </a>
-      </div>
-      <div>
-        <p class="badge"><i class="fa-solid fa-briefcase"></i> Role Match Engine</p>
-        <h1>Job Match Finder</h1>
-        <p class="subtitle">
-          Upload your resume, pick a target role, and get focused fit analysis with keyword and ATS insights.
-        </p>
-      </div>
-      <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
-        <i class="fa-solid fa-moon"></i>
-        <span>Dark Mode</span>
-      </button>
-    </header>
+  <body data-role-required="true">
+    <header id="topbar"></header>
 
     <main class="container">
-      <section class="panel upload-panel">
-        <h2><i class="fa-solid fa-file-arrow-up"></i> Upload & Select Job</h2>
-        <p class="panel-text">Accepted formats: PDF, PNG, JPG, JPEG, WEBP</p>
+      <div class="page-head">
+        <h1 id="pageTitle">Job Match</h1>
+        <p class="lede" id="pageLede">
+          Choose the role you are going for, then upload your CV. You get a requirement-by-requirement
+          verdict on what you evidence and what you do not.
+        </p>
+      </div>
 
-        <label for="apiBase" class="input-label">API Base URL</label>
-        <input id="apiBase" type="text" placeholder="http://localhost:5000" />
+      <!-- ---------- input ---------- -->
+      <section class="panel" aria-labelledby="uploadHeading">
+        <h2 id="uploadHeading">Your resume</h2>
+        <p class="muted">PDF, DOCX, TXT, PNG, JPG, or WEBP &mdash; up to 10&nbsp;MB.</p>
 
-        <label for="jobSelect" class="input-label">Select Target Job Role (Required for matching)</label>
-        <select id="jobSelect" class="form-select">
-          <option value="">-- Select Role --</option>
-        </select>
-        <div id="selectedJobInfo" class="job-info" style="display: none;">
-          <h4 id="jobTitle"></h4>
-          <p id="jobDescription"></p>
-          <div id="jobRequirements"></div>
+        <div
+          id="dropZone"
+          class="dropzone"
+          tabindex="0"
+          role="button"
+          aria-describedby="selectedFile"
+        >
+          <input
+            id="resumeInput"
+            type="file"
+            accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp"
+            hidden
+          />
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <strong>Drop your resume here</strong>
+          <span class="small">or click to browse</span>
         </div>
 
-        <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload resume">
-          <input id="resumeInput" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden />
-          <i class="fa-regular fa-file-lines"></i>
-          <p><strong>Drag & drop</strong> your resume here</p>
-          <p class="small">or click to browse files</p>
-        </div>
+        <p id="selectedFile" class="file-line" role="status">
+          <i class="fa-regular fa-circle" aria-hidden="true"></i>
+          <span>No file chosen yet</span>
+        </p>
 
-        <p id="selectedFile" class="selected-file">No file selected</p>
-
-        <label for="jobDescription" class="input-label">Additional Job Description (Optional)</label>
-        <textarea
-          id="jobDescription"
-          rows="4"
-          placeholder="Paste any specific job description for custom matching..."
-        ></textarea>
-
-        <button id="analyzeBtn" class="primary-btn">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          Find Match
-        </button>
-      </section>
-
-      <section class="results-grid">
-        <article class="panel metric-card">
-          <h3><i class="fa-solid fa-gauge-high"></i> Resume Score</h3>
-          <p id="scoreValue" class="score">--</p>
-          <div class="progress-track"><div id="scoreBar" class="progress-fill"></div></div>
-        </article>
-
-        <article class="panel result-card wide" id="jdMatchSection">
-          <h3><i class="fa-solid fa-briefcase"></i> Job Match Analysis</h3>
-          <p id="jdScore">Select a role and upload a resume to get your match score.</p>
-          <div class="split-columns">
-            <div>
-              <h4>Matched Keywords</h4>
-              <div id="matchedKeywords" class="chips"></div>
+        <details class="disclosure" id="targetDisclosure" open style="margin-top: 18px">
+          <summary>Target role <span class="muted" id="targetState">— required on this page</span></summary>
+          <div class="disclosure-body">
+            <div class="field">
+              <label for="jobSelect">Pick a common role</label>
+              <select id="jobSelect">
+                <option value="">Any role</option>
+              </select>
             </div>
-            <div>
-              <h4>Missing JD Keywords</h4>
-              <div id="missingKeywords" class="chips"></div>
+
+            <div id="jobBrief" class="job-brief" hidden>
+              <h4>What this role expects</h4>
+              <p id="jobBriefText"></p>
+              <div id="jobBriefSkills" class="chips"></div>
+            </div>
+
+            <div class="field" style="margin-top: 18px; margin-bottom: 0">
+              <label for="jobDescription">Or paste the actual job posting</label>
+              <textarea
+                id="jobDescription"
+                rows="6"
+                placeholder="Paste the full posting. Boilerplate about benefits and culture is filtered out automatically — only the requirements are scored."
+              ></textarea>
+              <p class="field-hint">A pasted posting always takes priority over the role above, and matches it far more precisely.</p>
             </div>
           </div>
-        </article>
+        </details>
 
-        <article class="panel result-card wide" id="industryCheckSection">
-          <h3><i class="fa-solid fa-star"></i> Industry-Level Validation</h3>
-          <p id="industryCheckInfo" class="panel-text">Select a job role to see industry-specific validation.</p>
-          <div id="industryCheckResults"></div>
-        </article>
+        <details class="disclosure">
+          <summary>Settings</summary>
+          <div class="disclosure-body">
+            <div class="field" style="margin-bottom: 8px">
+              <label for="apiBase">API address</label>
+              <input id="apiBase" type="text" autocomplete="off" spellcheck="false" />
+              <p class="field-hint">
+                Where the analyzer backend is running.
+                <button id="apiBaseReset" type="button" class="file-line-reset" style="background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font:inherit;text-decoration:underline;text-underline-offset:2px">
+                  Reset to default
+                </button>
+              </p>
+            </div>
+            <p class="muted" id="aiStatus" style="margin: 0"></p>
+          </div>
+        </details>
 
-        <article class="panel result-card">
-          <h3><i class="fa-solid fa-circle-check"></i> Detected Skills</h3>
-          <div id="detectedSkills" class="chips"></div>
-        </article>
+        <div class="btn-row" style="margin-top: 20px">
+          <button id="analyzeBtn" class="btn btn-primary btn-lg" type="button">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+            <span>Check my match</span>
+          </button>
+        </div>
+      </section>
 
-        <article class="panel result-card">
-          <h3><i class="fa-solid fa-circle-exclamation"></i> Missing Skills</h3>
-          <div id="missingSkills" class="chips"></div>
-        </article>
+      <!-- ---------- first-run empty state ---------- -->
+      <div id="emptyState" class="empty-state" style="margin-top: 26px">
+        <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+        <h3>No analysis yet</h3>
+        <p>
+          Pick a role and upload your CV. You will see which of the role's requirements you
+          evidence, which you do not, and what to change first.
+        </p>
+      </div>
 
-        <article class="panel result-card">
-          <h3><i class="fa-solid fa-key"></i> Top Resume Keywords</h3>
-          <div id="topKeywords" class="chips"></div>
-        </article>
+      <!-- ---------- loading ---------- -->
+      <div id="loadingState" class="loading" style="margin-top: 26px" hidden aria-live="polite">
+        <p class="muted" style="margin: 0">Reading your resume&hellip;</p>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+      </div>
 
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-comment-dots"></i> Professional Feedback</h3>
-          <ul id="summaryList" class="list"></ul>
-          <h4>Suggestions</h4>
-          <ul id="suggestionsList" class="list"></ul>
-        </article>
+      <!-- ---------- results ---------- -->
+      <div class="results" id="results" hidden>
+        <section class="verdict" id="verdict" data-tone="good">
+          <div class="verdict-score">
+            <span class="verdict-number tabular" id="scoreValue">0</span>
+            <span class="verdict-outof">out of 100</span>
+            <div class="verdict-meter"><span id="scoreMeter"></span></div>
+            <p class="verdict-band" id="scoreBand"></p>
+          </div>
+          <div class="verdict-body">
+            <h2 id="verdictHeadline"></h2>
+            <p class="muted" id="verdictText" style="font-size: 0.96rem"></p>
+            <div class="verdict-facts" id="verdictFacts"></div>
+          </div>
+        </section>
 
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-list-check"></i> ATS Structure Insights</h3>
-          <p id="structureScore" class="panel-text">Upload a resume to view structure coverage.</p>
-          <div class="split-columns">
+        <section class="panel" aria-labelledby="matchHeading" id="matchPanel" hidden>
+          <h2 id="matchHeading">Match against this job</h2>
+          <p class="muted" id="matchSummary"></p>
+          <div class="split">
             <div>
-              <h4>Present Sections</h4>
+              <h4>You evidence</h4>
+              <div id="matchedSkills" class="chips"></div>
+            </div>
+            <div>
+              <h4>Not evidenced</h4>
+              <div id="missingSkillsList" class="chips"></div>
+            </div>
+          </div>
+          <details class="disclosure" style="margin-top: 20px; margin-bottom: 0">
+            <summary>Vocabulary the posting uses that you do not</summary>
+            <div class="disclosure-body">
+              <div id="missingKeywords" class="chips"></div>
+              <p class="field-hint">
+                Mirror only the terms that genuinely describe your work. Keyword stuffing reads as
+                stuffing to a human reviewer.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel" id="actionsPanel" aria-labelledby="actionsHeading">
+          <div class="panel-head">
+            <h2 id="actionsHeading">Fix these first</h2>
+            <span class="muted" id="actionsTotal"></span>
+          </div>
+          <p class="muted">
+            Ordered by how many points each change adds to your score.
+          </p>
+          <ol class="actions" id="actionsList"></ol>
+        </section>
+
+        <section class="panel" id="aiPanel" hidden aria-labelledby="aiHeading">
+          <div class="panel-head">
+            <h2 id="aiHeading">AI review</h2>
+            <span class="muted" id="aiModel"></span>
+          </div>
+          <div id="aiBody"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="breakdownHeading">
+          <h2 id="breakdownHeading">How the score breaks down</h2>
+          <p class="muted">Each component is out of 100, then weighted into the total.</p>
+          <div class="breakdown" id="scoreBreakdown"></div>
+        </section>
+
+        <section class="panel" aria-labelledby="skillsHeading">
+          <div class="panel-head">
+            <h2 id="skillsHeading">Skills we found</h2>
+            <span class="muted" id="skillCount"></span>
+          </div>
+          <div id="skillGroups"></div>
+          <div id="disclaimedBlock" hidden style="margin-top: 20px">
+            <div class="callout is-warn">
+              <strong>Not counted:</strong>
+              <span id="disclaimedList"></span>
+              <br />
+              You mention these in a negative or aspirational phrase, such as
+              &ldquo;no experience with&rdquo; or &ldquo;currently learning&rdquo;. If you do have
+              the skill, state it plainly instead.
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="atsHeading">
+          <div class="panel-head">
+            <h2 id="atsHeading">ATS checks</h2>
+            <span class="muted" id="atsSummary"></span>
+          </div>
+          <p class="muted">
+            What an applicant tracking system looks for before a human ever sees the file.
+          </p>
+          <ul class="checklist" id="atsChecklist"></ul>
+        </section>
+
+        <section class="panel" aria-labelledby="structureHeading">
+          <div class="panel-head">
+            <h2 id="structureHeading">Sections</h2>
+            <span class="muted" id="structureSummary"></span>
+          </div>
+          <div class="split">
+            <div>
+              <h4>Present</h4>
               <div id="presentSections" class="chips"></div>
             </div>
             <div>
-              <h4>Missing Sections</h4>
+              <h4>Missing</h4>
               <div id="missingSections" class="chips"></div>
             </div>
           </div>
-          <h4>ATS Tips</h4>
-          <ul id="atsTips" class="list"></ul>
-        </article>
+        </section>
 
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-clipboard-check"></i> ATS Checker</h3>
-          <p id="atsScore" class="panel-text">Run analysis to view ATS checklist score.</p>
-          <div class="split-columns">
-            <div>
-              <h4>Passed Checks</h4>
-              <div id="atsPassedChecks" class="chips"></div>
-            </div>
-            <div>
-              <h4>Failed Checks</h4>
-              <div id="atsFailedChecks" class="chips"></div>
-            </div>
-          </div>
-          <h4>ATS Recommendations</h4>
-          <ul id="atsRecommendations" class="list"></ul>
-        </article>
-
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-layer-group"></i> Skills Explorer</h3>
-          <p class="panel-text">Search and preview the full predefined skills catalog used by the analyzer.</p>
-          <div class="inline-controls">
-            <input id="skillSearch" type="text" placeholder="Search skills (e.g., docker, nlp, react)" />
-            <button id="searchSkillsBtn" class="secondary-btn">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              Search Skills
+        <section class="panel" aria-labelledby="exportHeading">
+          <h2 id="exportHeading">Take it with you</h2>
+          <p class="muted">A one-page PDF with your score, the ranked fixes, and the reasoning.</p>
+          <div class="btn-row">
+            <button id="downloadReportBtn" class="btn btn-secondary" type="button">
+              <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+              Download PDF report
+            </button>
+            <button id="reanalyzeBtn" class="btn btn-ghost" type="button">
+              <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+              Run again
             </button>
           </div>
-          <div id="skillsCatalog" class="chips"></div>
-        </article>
-
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-download"></i> Export Report</h3>
-          <p class="panel-text">Download a PDF summary of the latest analysis results.</p>
-          <button id="downloadReportBtn" class="secondary-btn" disabled>
-            <i class="fa-solid fa-file-pdf"></i>
-            Download PDF Report
-          </button>
-        </article>
-      </section>
+        </section>
+      </div>
     </main>
 
-    <div id="toast" class="toast" role="alert"></div>
+    <footer class="footer">
+      <div class="container">
+        <span>Your file is read once and deleted. Nothing is stored.</span>
+        <a href="./index.html">All tools</a>
+      </div>
+    </footer>
 
-    <script src="./js/analyzer.js"></script>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="./js/analyzer.js"></script>
   </body>
 </html>

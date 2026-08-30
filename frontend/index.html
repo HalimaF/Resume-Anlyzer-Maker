@@ -2,11 +2,215 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Career Assistant</title>
-    <meta http-equiv="refresh" content="0; url=./menu.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Career Desk — resume analysis that tells you what to fix</title>
+    <meta
+      name="description"
+      content="Score your resume against a real job, see exactly which fixes are worth the most, and build a CV and cover letter that get read."
+    />
+    <script>
+      // Applied before first paint so the page never flashes the wrong theme.
+      (function () {
+        try {
+          var t = localStorage.getItem("sca.theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" || t === "dark"
+              ? t
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          );
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <p>If you are not redirected automatically, <a href="./menu.html">open the main page</a>.</p>
+    <header id="topbar"></header>
+
+    <main class="container">
+      <section class="home-hero">
+        <h1>Find out what is actually wrong with your resume.</h1>
+        <p class="lede">
+          Upload a CV and get a score you can act on: every fix ranked by how many points it is
+          worth, what it costs you in minutes, and exactly which words to change. Works for any
+          profession, not just software.
+        </p>
+        <div class="home-cta">
+          <a class="btn btn-primary btn-lg" href="./analyzer.html">
+            <i class="fa-solid fa-file-arrow-up" aria-hidden="true"></i>
+            Analyze my resume
+          </a>
+          <span class="home-stat">
+            <b id="catalogSize">336</b> skills recognised across
+            <b>17</b> professional fields
+          </span>
+        </div>
+      </section>
+
+      <div class="tool-index">
+        <a class="tool" href="./import.html">
+          <i class="fa-solid fa-file-import" aria-hidden="true"></i>
+          <h3>Import</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            Drop your LinkedIn export or an old CV and every field is filled in for you. The
+            fastest way to start.
+          </p>
+        </a>
+
+        <a class="tool" href="./analyzer.html">
+          <i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>
+          <h3>Resume Analyzer</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            Score, ATS checks, skill detection, and a ranked list of fixes ordered by how much each
+            one raises your score.
+          </p>
+        </a>
+
+        <a class="tool" href="./job-finder.html">
+          <i class="fa-solid fa-crosshairs" aria-hidden="true"></i>
+          <h3>Job Match</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            Pick a target role, or paste any posting, and see precisely which of its requirements
+            your resume does and does not evidence.
+          </p>
+        </a>
+
+        <a class="tool" href="./cv-maker.html">
+          <i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>
+          <h3>CV Maker</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            Build a clean, parseable CV with a live preview, four templates, autosave, and a
+            print-ready PDF export.
+          </p>
+        </a>
+
+        <a class="tool" href="./cover-letter-generator.html">
+          <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>
+          <h3>Cover Letter</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            Draft a letter in the tone you choose, built from your own highlights rather than
+            filled-in blanks.
+          </p>
+        </a>
+
+        <a class="tool" href="./bulk-analyzer.html">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+          <h3>Bulk Review</h3>
+          <span class="tool-go">Open <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+          <p>
+            For hiring: score up to 25 resumes against one posting, rank them, and export the
+            shortlist as CSV or JSON.
+          </p>
+        </a>
+      </div>
+
+      <section class="panel" style="margin-top: 40px">
+        <h2>How the score is built</h2>
+        <p class="muted">
+          Five components, each scored out of 100 and then weighted. Nothing is hidden: every
+          analysis shows you the same breakdown.
+        </p>
+        <div class="breakdown" id="modelBreakdown">
+          <div class="breakdown-row">
+            <span class="breakdown-label">Keyword matching</span>
+            <span class="breakdown-weight">30%</span>
+            <p class="breakdown-desc">
+              Which skills you evidence, and how many of the target role's requirements they cover.
+            </p>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Content quality</span>
+            <span class="breakdown-weight">20%</span>
+            <p class="breakdown-desc">
+              Whether your bullets state outcomes with real numbers rather than listing duties.
+            </p>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Structure &amp; format</span>
+            <span class="breakdown-weight">20%</span>
+            <p class="breakdown-desc">
+              Whether the standard sections exist and are headed clearly enough to be parsed.
+            </p>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">ATS compliance</span>
+            <span class="breakdown-weight">20%</span>
+            <p class="breakdown-desc">
+              Contact details, section headings, action verbs, and a length a screener will read.
+            </p>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label">Experience relevance</span>
+            <span class="breakdown-weight">10%</span>
+            <p class="breakdown-desc">
+              Career length inferred from stated tenure and the date ranges on your roles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Your files stay on your machine</h2>
+        <p class="muted" style="margin-bottom: 0">
+          The analyzer runs entirely on the local API. Uploads are written to a temporary file,
+          read once, and deleted immediately &mdash; nothing is stored and no account is needed.
+          Optional AI enrichment is off unless you turn it on yourself, and it can point at a
+          model running on your own computer.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>Career Desk &mdash; local resume analysis.</span>
+        <span id="apiStatus">Checking the API&hellip;</span>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module">
+      import { mountChrome, initTheme, getApiBase } from "./js/shared.js";
+
+      mountChrome();
+      initTheme();
+
+      // A live reading beats a promise: say whether the API is actually up.
+      const status = document.getElementById("apiStatus");
+      const base = getApiBase();
+      fetch(`${base}/api/health`)
+        .then((response) => (response.ok ? response.json() : Promise.reject(new Error("unhealthy"))))
+        .then((data) => {
+          status.textContent = `API online · ${data.skills_in_catalog} skills loaded`;
+          const size = document.getElementById("catalogSize");
+          if (size && data.skills_in_catalog) size.textContent = data.skills_in_catalog;
+        })
+        .catch(() => {
+          status.innerHTML =
+            'API offline &mdash; run <code>python run.py</code> in the backend folder';
+        });
+    </script>
   </body>
 </html>

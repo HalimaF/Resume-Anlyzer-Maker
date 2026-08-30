@@ -14,3 +14,10 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# Test / tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+backend/.env

@@ -1,13 +1,15 @@
 Flask==3.1.0
 Flask-Cors==5.0.0
 PyMuPDF>=1.26.0
-easyocr>=1.7.2
+rapidocr-onnxruntime==1.2.3
 opencv-python-headless>=4.11.0.86
 numpy>=2.2.0
 reportlab>=4.2.5
-gunicorn==23.0.0
 python-dotenv==1.0.1
-pytest==8.3.5
-pytest-cov==6.0.0
 python-docx>=0.8.11
-scikit-learn>=1.3.2
+requests>=2.32.0
+
+# Optional heavyweight OCR fallback. easyocr pulls in torch (multi-GB,
+# including the CUDA stack on Linux), so it is not installed by default.
+# Enable it only on a machine with the headroom:
+#   pip install easyocr && set OCR_ENGINE=easyocr

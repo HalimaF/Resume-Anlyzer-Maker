@@ -1,267 +1,285 @@
 {
+  "note": "Every keywordRequirement must be a canonical name in backend/app/data/skills.json, or the analyzer can never detect it. backend/eval/check_jobs.py verifies this.",
   "jobs": [
+    {
+      "id": "software-engineer",
+      "title": "Software Engineer",
+      "industry": "Technology",
+      "field": "Technology",
+      "experience": "2-5 years",
+      "description": "Builds and maintains software products, from API design through deployment.",
+      "keywordRequirements": ["Python", "JavaScript", "SQL", "Git", "REST API", "Unit Testing", "Docker", "System Design"],
+      "requiredSections": ["summary", "experience", "skills", "education", "projects"]
+    },
     {
       "id": "senior-software-engineer",
       "title": "Senior Software Engineer",
       "industry": "Technology",
+      "field": "Technology",
       "experience": "5-8 years",
-      "description": "Senior Software Engineer experienced in full-stack development, system design, and team leadership.",
-      "keywordRequirements": [
-        "Python",
-        "JavaScript",
-        "System Design",
-        "Database Design",
-        "API Development",
-        "Cloud Platforms",
-        "Docker",
-        "Kubernetes",
-        "AWS",
-        "Git"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Technical Skills",
-        "Projects",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "LinkedIn profile",
-        "Years of experience",
-        "Technical skills listed",
-        "Metrics/achievements",
-        "Education information",
-        "Clear formatting"
-      ]
+      "description": "Leads technical design and delivery across services, and mentors other engineers.",
+      "keywordRequirements": ["Python", "JavaScript", "System Design", "Database Design", "REST API", "Cloud Platforms", "Docker", "Kubernetes", "AWS", "Git", "Leadership"],
+      "requiredSections": ["summary", "experience", "skills", "education", "projects"]
+    },
+    {
+      "id": "frontend-developer",
+      "title": "Frontend Developer",
+      "industry": "Technology",
+      "field": "Technology",
+      "experience": "2-5 years",
+      "description": "Builds accessible, responsive user interfaces and the systems behind them.",
+      "keywordRequirements": ["JavaScript", "TypeScript", "React", "HTML", "CSS", "Responsive Design", "Web Accessibility", "Git"],
+      "requiredSections": ["summary", "experience", "skills", "projects"]
     },
     {
       "id": "data-scientist",
       "title": "Data Scientist",
-      "industry": "Technology/Analytics",
+      "industry": "Technology / Analytics",
+      "field": "Data & Analytics",
       "experience": "3-6 years",
-      "description": "Data Scientist with expertise in machine learning, statistical analysis, and data visualization.",
-      "keywordRequirements": [
-        "Python",
-        "Machine Learning",
-        "SQL",
-        "Data Analysis",
-        "Pandas",
-        "NumPy",
-        "Scikit-learn",
-        "TensorFlow",
-        "Tableau",
-        "R",
-        "Statistics",
-        "Data Visualization"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Skills",
-        "Projects/Portfolio",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "GitHub profile",
-        "Portfolio link",
-        "ML frameworks mentioned",
-        "Statistical methods",
-        "Data tools listed",
-        "Metrics-driven achievements"
-      ]
+      "description": "Turns data into models and decisions, from feature work through deployment.",
+      "keywordRequirements": ["Python", "Machine Learning", "SQL", "Data Analysis", "Pandas", "NumPy", "Scikit-learn", "Statistics", "Data Visualization", "A/B Testing"],
+      "requiredSections": ["summary", "experience", "skills", "education", "projects"]
     },
     {
-      "id": "product-manager",
-      "title": "Product Manager",
-      "industry": "Technology/Business",
-      "experience": "4-7 years",
-      "description": "Product Manager with strong leadership, cross-functional collaboration, and product strategy skills.",
-      "keywordRequirements": [
-        "Product Strategy",
-        "User Experience",
-        "Data Analysis",
-        "Agile",
-        "Leadership",
-        "Roadmap Planning",
-        "Stakeholder Management",
-        "A/B Testing",
-        "Metrics",
-        "User Research"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Core Competencies",
-        "Achievements",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "LinkedIn profile",
-        "Product launches",
-        "Cross-functional teams",
-        "Revenue impact",
-        "User growth metrics",
-        "Leadership experience"
-      ]
-    },
-    {
-      "id": "ux-designer",
-      "title": "UX/UI Designer",
-      "industry": "Design/Technology",
-      "experience": "3-6 years",
-      "description": "UX/UI Designer with portfolio of work demonstrating user research, wireframing, and design systems.",
-      "keywordRequirements": [
-        "Figma",
-        "User Research",
-        "Wireframing",
-        "Prototyping",
-        "Design Systems",
-        "Usability Testing",
-        "Interaction Design",
-        "Visual Design",
-        "Adobe XD",
-        "Sketch"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Design Skills",
-        "Portfolio/Projects",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "Portfolio link",
-        "Design tools listed",
-        "User-centered design",
-        "Metrics/impact",
-        "Design systems",
-        "Research methods"
-      ]
+      "id": "data-analyst",
+      "title": "Data Analyst",
+      "industry": "Analytics",
+      "field": "Data & Analytics",
+      "experience": "1-4 years",
+      "description": "Answers business questions with data, and builds the reporting others rely on.",
+      "keywordRequirements": ["SQL", "Excel", "Data Analysis", "Data Visualization", "Power BI", "Statistics", "Attention to Detail", "Communication"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
     },
     {
       "id": "devops-engineer",
       "title": "DevOps Engineer",
-      "industry": "Technology/Infrastructure",
+      "industry": "Technology",
+      "field": "Technology",
       "experience": "3-7 years",
-      "description": "DevOps Engineer with expertise in CI/CD pipelines, cloud infrastructure, and monitoring solutions.",
-      "keywordRequirements": [
-        "Docker",
-        "Kubernetes",
-        "CI/CD",
-        "AWS",
-        "Azure",
-        "Terraform",
-        "Jenkins",
-        "Linux",
-        "Monitoring",
-        "Automation",
-        "Python",
-        "Bash"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Technical Skills",
-        "Certifications",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "GitHub profile",
-        "Cloud certifications",
-        "Infrastructure projects",
-        "Automation scripts",
-        "Uptime metrics",
-        "Deployment frequency"
-      ]
+      "description": "Owns infrastructure, deployment pipelines, and production reliability.",
+      "keywordRequirements": ["Linux", "Docker", "Kubernetes", "Terraform", "CI/CD", "AWS", "Bash", "Monitoring", "Incident Response", "Git"],
+      "requiredSections": ["summary", "experience", "skills", "certifications"]
+    },
+    {
+      "id": "ux-designer",
+      "title": "UX / UI Designer",
+      "industry": "Design",
+      "field": "Design & Creative",
+      "experience": "3-6 years",
+      "description": "Researches user needs and designs the interfaces that meet them.",
+      "keywordRequirements": ["Figma", "User Research", "Wireframing", "Prototyping", "Design Systems", "Usability Testing", "Interaction Design", "Visual Design", "Accessibility Design"],
+      "requiredSections": ["summary", "experience", "skills", "projects"]
+    },
+    {
+      "id": "graphic-designer",
+      "title": "Graphic Designer",
+      "industry": "Design",
+      "field": "Design & Creative",
+      "experience": "2-5 years",
+      "description": "Produces brand and campaign work across print and digital.",
+      "keywordRequirements": ["Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Typography", "Brand Identity", "Visual Design", "Illustration", "Creative Direction"],
+      "requiredSections": ["summary", "experience", "skills", "projects"]
+    },
+    {
+      "id": "product-manager",
+      "title": "Product Manager",
+      "industry": "Technology / Business",
+      "field": "Product & Programme",
+      "experience": "4-7 years",
+      "description": "Owns what gets built and why, from discovery through launch and iteration.",
+      "keywordRequirements": ["Product Strategy", "Roadmap Planning", "Stakeholder Management", "Requirements Gathering", "Agile", "Product Analytics", "A/B Testing", "User Research", "Go-to-Market", "Prioritization"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
+    },
+    {
+      "id": "project-manager",
+      "title": "Project Manager",
+      "industry": "Cross-industry",
+      "field": "Product & Programme",
+      "experience": "3-8 years",
+      "description": "Delivers projects on scope, budget and schedule across teams and vendors.",
+      "keywordRequirements": ["Project Management", "Stakeholder Management", "Risk Management", "Budget Management", "Agile", "Jira", "Vendor Management", "Communication"],
+      "requiredSections": ["summary", "experience", "skills", "certifications"]
     },
     {
       "id": "marketing-manager",
       "title": "Marketing Manager",
-      "industry": "Marketing/Business",
+      "industry": "Marketing",
+      "field": "Marketing & Communications",
       "experience": "4-8 years",
-      "description": "Marketing Manager with proven track record in campaign management, brand strategy, and team leadership.",
-      "keywordRequirements": [
-        "Campaign Management",
-        "Brand Strategy",
-        "Content Marketing",
-        "Analytics",
-        "Marketing Automation",
-        "Social Media",
-        "SEO",
-        "Budget Management",
-        "Creative Direction",
-        "Market Research"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Core Competencies",
-        "Achievements",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "LinkedIn profile",
-        "Campaign metrics",
-        "ROI metrics",
-        "Team size managed",
-        "Budget managed",
-        "Brand/product launches"
-      ]
+      "description": "Plans and runs campaigns, owns the budget, and reports on what worked.",
+      "keywordRequirements": ["Campaign Management", "Brand Strategy", "Content Marketing", "Google Analytics", "Marketing Automation", "Social Media", "SEO", "Budget Management", "Market Research", "Copywriting"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
+    },
+    {
+      "id": "digital-marketer",
+      "title": "Digital Marketing Specialist",
+      "industry": "Marketing",
+      "field": "Marketing & Communications",
+      "experience": "1-4 years",
+      "description": "Runs paid and organic channels and optimises them against conversion.",
+      "keywordRequirements": ["SEO", "SEM", "Google Analytics", "Email Marketing", "Social Media", "Conversion Optimization", "Content Marketing", "A/B Testing"],
+      "requiredSections": ["summary", "experience", "skills"]
+    },
+    {
+      "id": "content-writer",
+      "title": "Content Writer",
+      "industry": "Media",
+      "field": "Marketing & Communications",
+      "experience": "1-5 years",
+      "description": "Writes and edits content that ranks, reads well, and serves a strategy.",
+      "keywordRequirements": ["Copywriting", "Content Marketing", "SEO", "Editing", "Storytelling", "Technical Writing", "Attention to Detail"],
+      "requiredSections": ["summary", "experience", "skills", "projects"]
     },
     {
       "id": "sales-executive",
       "title": "Sales Executive",
-      "industry": "Sales/Business",
-      "experience": "3-7 years",
-      "description": "Sales Executive with strong track record of closing deals, territory expansion, and relationship management.",
-      "keywordRequirements": [
-        "Sales Strategy",
-        "Relationship Management",
-        "Territory Expansion",
-        "Negotiation",
-        "CRM",
-        "Pipeline Management",
-        "Account Management",
-        "Revenue Growth",
-        "Sales Forecasting",
-        "Client Retention"
-      ],
-      "requiredSections": [
-        "Contact Information",
-        "Professional Summary",
-        "Work Experience",
-        "Key Achievements",
-        "Skills",
-        "Education"
-      ],
-      "atsChecklist": [
-        "Email address",
-        "Phone number",
-        "LinkedIn profile",
-        "Sales metrics",
-        "Revenue numbers",
-        "Deal size",
-        "Customer retention",
-        "Territory expansion"
-      ]
+      "industry": "Sales",
+      "field": "Sales & Customer",
+      "experience": "2-6 years",
+      "description": "Owns a pipeline end to end, from prospecting through close and renewal.",
+      "keywordRequirements": ["B2B Sales", "CRM", "Pipeline Management", "Lead Generation", "Negotiation", "Account Management", "Revenue Growth", "Client Retention", "Sales Forecasting"],
+      "requiredSections": ["summary", "experience", "skills"]
+    },
+    {
+      "id": "customer-success",
+      "title": "Customer Success Manager",
+      "industry": "Sales",
+      "field": "Sales & Customer",
+      "experience": "2-6 years",
+      "description": "Keeps customers successful and renewing after the sale is closed.",
+      "keywordRequirements": ["Customer Success", "Relationship Management", "CRM", "Client Retention", "Communication", "Problem Solving", "Account Management"],
+      "requiredSections": ["summary", "experience", "skills"]
+    },
+    {
+      "id": "accountant",
+      "title": "Accountant",
+      "industry": "Finance",
+      "field": "Finance & Legal",
+      "experience": "2-6 years",
+      "description": "Owns the ledger, the close, and statutory reporting.",
+      "keywordRequirements": ["Accounting", "Financial Reporting", "IFRS", "Excel", "Taxation", "Budgeting", "Attention to Detail", "QuickBooks"],
+      "requiredSections": ["summary", "experience", "skills", "education", "certifications"]
+    },
+    {
+      "id": "financial-analyst",
+      "title": "Financial Analyst",
+      "industry": "Finance",
+      "field": "Finance & Legal",
+      "experience": "2-6 years",
+      "description": "Builds the models and forecasts the business plans against.",
+      "keywordRequirements": ["Financial Analysis", "Excel", "Budgeting", "Investment Analysis", "SQL", "Data Visualization", "Statistics", "Critical Thinking"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
+    },
+    {
+      "id": "solicitor",
+      "title": "Solicitor / Legal Counsel",
+      "industry": "Legal",
+      "field": "Finance & Legal",
+      "experience": "2-8 years",
+      "description": "Advises on and drafts commercial agreements, and manages legal risk.",
+      "keywordRequirements": ["Contract Law", "Legal Research", "Legal Drafting", "Corporate Law", "Due Diligence", "Negotiation", "Compliance", "Regulatory Affairs"],
+      "requiredSections": ["summary", "experience", "education", "certifications", "skills"]
+    },
+    {
+      "id": "registered-nurse",
+      "title": "Registered Nurse",
+      "industry": "Healthcare",
+      "field": "Healthcare",
+      "experience": "1-10 years",
+      "description": "Delivers direct patient care and coordinates it across a clinical team.",
+      "keywordRequirements": ["Patient Care", "Clinical Documentation", "Triage", "Medication Administration", "Electronic Health Records", "Basic Life Support", "Infection Control", "Patient Education", "Collaboration"],
+      "requiredSections": ["summary", "experience", "education", "certifications", "skills"]
+    },
+    {
+      "id": "healthcare-assistant",
+      "title": "Healthcare Assistant",
+      "industry": "Healthcare",
+      "field": "Healthcare",
+      "experience": "0-5 years",
+      "description": "Supports nursing staff with direct care and daily patient wellbeing.",
+      "keywordRequirements": ["Patient Care", "Vital Signs Monitoring", "Infection Control", "Clinical Documentation", "Communication", "Collaboration", "Time Management"],
+      "requiredSections": ["summary", "experience", "certifications", "skills"]
+    },
+    {
+      "id": "secondary-teacher",
+      "title": "Teacher",
+      "industry": "Education",
+      "field": "Education & Research",
+      "experience": "1-10 years",
+      "description": "Plans and delivers a curriculum, and evidences student progress.",
+      "keywordRequirements": ["Curriculum Development", "Classroom Management", "Assessment Design", "Learning Management Systems", "Communication", "Special Education", "Collaboration"],
+      "requiredSections": ["summary", "experience", "education", "certifications", "skills"]
+    },
+    {
+      "id": "lecturer-researcher",
+      "title": "Lecturer / Researcher",
+      "industry": "Higher Education",
+      "field": "Education & Research",
+      "experience": "3-10 years",
+      "description": "Teaches at degree level and publishes original research.",
+      "keywordRequirements": ["Academic Research", "Curriculum Development", "Grant Writing", "Data Collection", "Public Speaking", "Statistics", "Instructional Design"],
+      "requiredSections": ["summary", "experience", "education", "projects", "skills"]
+    },
+    {
+      "id": "hr-manager",
+      "title": "HR Manager",
+      "industry": "Human Resources",
+      "field": "HR & People",
+      "experience": "4-8 years",
+      "description": "Owns the employee lifecycle, from hiring through performance and exit.",
+      "keywordRequirements": ["Recruiting", "Employee Relations", "Performance Management", "Employment Law", "Compensation and Benefits", "HRIS", "Learning and Development", "Employee Engagement"],
+      "requiredSections": ["summary", "experience", "education", "skills", "certifications"]
+    },
+    {
+      "id": "recruiter",
+      "title": "Recruiter",
+      "industry": "Human Resources",
+      "field": "HR & People",
+      "experience": "1-6 years",
+      "description": "Sources, screens and closes candidates against a hiring plan.",
+      "keywordRequirements": ["Recruiting", "Interviewing", "Employee Onboarding", "Stakeholder Management", "CRM", "Communication", "Workforce Planning"],
+      "requiredSections": ["summary", "experience", "skills"]
+    },
+    {
+      "id": "operations-manager",
+      "title": "Operations Manager",
+      "industry": "Operations",
+      "field": "Operations & Supply Chain",
+      "experience": "4-10 years",
+      "description": "Runs day-to-day operations and improves the processes behind them.",
+      "keywordRequirements": ["Operations Management", "Process Improvement", "Lean Six Sigma", "Budget Management", "Leadership", "Health and Safety", "Vendor Management", "Quality Control"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
+    },
+    {
+      "id": "supply-chain-analyst",
+      "title": "Supply Chain Analyst",
+      "industry": "Logistics",
+      "field": "Operations & Supply Chain",
+      "experience": "2-6 years",
+      "description": "Plans demand and inventory, and keeps the supply chain moving.",
+      "keywordRequirements": ["Supply Chain Management", "Inventory Management", "Demand Planning", "Excel", "Data Analysis", "SAP", "Forecasting", "Process Improvement"],
+      "requiredSections": ["summary", "experience", "skills", "education"]
+    },
+    {
+      "id": "hospitality-manager",
+      "title": "Hospitality Manager",
+      "industry": "Hospitality",
+      "field": "Operations & Supply Chain",
+      "experience": "3-10 years",
+      "description": "Runs front and back of house, and owns the guest experience.",
+      "keywordRequirements": ["Hospitality Operations", "Leadership", "Customer Focus", "Budget Management", "Health and Safety", "Event Coordination", "Time Management"],
+      "requiredSections": ["summary", "experience", "skills"]
+    },
+    {
+      "id": "customer-support",
+      "title": "Customer Support Specialist",
+      "industry": "Support",
+      "field": "Sales & Customer",
+      "experience": "0-4 years",
+      "description": "Resolves customer issues and keeps satisfaction and response times high.",
+      "keywordRequirements": ["Customer Support", "Communication", "Problem Solving", "CRM", "Time Management", "Customer Focus", "Attention to Detail"],
+      "requiredSections": ["summary", "experience", "skills"]
     }
   ]
 }

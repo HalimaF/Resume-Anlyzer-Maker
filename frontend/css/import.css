@@ -1,0 +1,149 @@
+/* ============================================================================
+   Import page: the "or paste instead" divider, the how-to steps, and the
+   summary of what the parser found.
+   ========================================================================= */
+
+.or-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0 18px;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.or-rule::before,
+.or-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* The sequence itself is the information here, so the numbers earn their place. */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-top: 1px solid var(--rule);
+  font-size: 0.94rem;
+}
+
+.steps li:first-child {
+  border-top: 0;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps b {
+  color: var(--ink);
+  background: var(--surface-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 0.88em;
+  font-weight: 600;
+}
+
+/* ---- what the parser found ---------------------------------------------- */
+.found {
+  margin: 18px 0 0;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.found-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  padding: 12px 15px;
+  background: var(--surface);
+  font-size: 0.92rem;
+  align-items: baseline;
+}
+
+.found-row dt {
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.found-row dd {
+  margin: 0;
+  min-width: 0;
+}
+
+.found-row dd.is-empty {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.found-entry + .found-entry {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule);
+}
+
+.found-entry strong {
+  display: block;
+  font-weight: 600;
+}
+
+.found-entry span {
+  color: var(--ink-2);
+  font-size: 0.88rem;
+}
+
+.found-entry .when {
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Employer and dates are separate spans, so they need a separator or they
+   read as one run-on string: "Brookfield Academy September 2020". */
+.found-entry span + span.when::before {
+  content: "·";
+  margin: 0 6px;
+  color: var(--rule-strong);
+}
+
+.found-entry span:empty {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .found-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+}

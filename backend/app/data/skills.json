@@ -1,115 +1,2353 @@
 {
-  "skills": [
-    "Algorithms",
-    "Android",
-    "Ansible",
-    "Apache Kafka",
-    "Apache Spark",
-    "API Testing",
-    "AutoML",
-    "BigQuery",
-    "Bitbucket",
-    "Business Analysis",
-    "C",
-    "C++",
-    "C#",
-    "Cloud Security",
-    "Communication",
-    "Computer Vision",
-    "Data Engineering",
-    "Python",
-    "Flask",
-    "Django",
-    "FastAPI",
-    "Java",
-    "Spring Boot",
-    "Go",
-    "Rust",
-    "PHP",
-    "Laravel",
-    "Ruby",
-    "Ruby on Rails",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Vue.js",
-    "Angular",
-    "Node.js",
-    "Express.js",
-    "HTML",
-    "CSS",
-    "Sass",
-    "Bootstrap",
-    "Tailwind CSS",
-    "SQL",
-    "SQLite",
-    "Microsoft SQL Server",
-    "PostgreSQL",
-    "MySQL",
-    "MongoDB",
-    "Firebase",
-    "DynamoDB",
-    "Elasticsearch",
-    "Redis",
-    "RabbitMQ",
-    "Celery",
-    "Docker",
-    "Kubernetes",
-    "Terraform",
-    "Jenkins",
-    "GitHub Actions",
-    "AWS",
-    "Azure",
-    "GCP",
-    "Serverless",
-    "Vercel",
-    "Netlify",
-    "Git",
-    "CI/CD",
-    "Unit Testing",
-    "Integration Testing",
-    "PyTest",
-    "Selenium",
-    "Playwright",
-    "REST API",
-    "GraphQL",
-    "Pandas",
-    "NumPy",
-    "Scikit-learn",
-    "XGBoost",
-    "TensorFlow",
-    "PyTorch",
-    "NLP",
-    "LLMs",
-    "Prompt Engineering",
-    "RAG",
-    "Machine Learning",
-    "Deep Learning",
-    "MLOps",
-    "Data Analysis",
-    "Data Visualization",
-    "Feature Engineering",
-    "Power BI",
-    "Tableau",
-    "Looker",
-    "Excel",
-    "Linux",
-    "Bash",
-    "Agile",
-    "Scrum",
-    "Kanban",
-    "Problem Solving",
-    "Leadership",
-    "Collaboration",
-    "Time Management",
-    "System Design",
-    "Design Patterns",
-    "Microservices",
-    "Distributed Systems",
-    "Event-Driven Architecture",
-    "OAuth",
-    "JWT",
-    "WebSockets"
-  ]
+  "version": 2,
+  "note": "Skill catalog grouped by category. An entry is a name plus optional 'aliases' (other spellings that mean the same skill) and 'evidence' (phrases that demonstrate the skill without naming it). Matching is longest-phrase-first, so 'C++' always wins over 'C'.",
+  "categories": {
+    "Programming Languages": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "JavaScript",
+        "aliases": [
+          "js",
+          "ecmascript"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "aliases": [
+          "ts"
+        ]
+      },
+      {
+        "name": "Java"
+      },
+      {
+        "name": "C++",
+        "aliases": [
+          "cpp",
+          "c plus plus"
+        ]
+      },
+      {
+        "name": "C#",
+        "aliases": [
+          "csharp",
+          "c sharp",
+          ".net"
+        ]
+      },
+      {
+        "name": "C",
+        "aliases": [
+          "c language",
+          "ansi c"
+        ]
+      },
+      {
+        "name": "Go",
+        "aliases": [
+          "golang"
+        ]
+      },
+      {
+        "name": "Rust"
+      },
+      {
+        "name": "PHP"
+      },
+      {
+        "name": "Ruby"
+      },
+      {
+        "name": "Swift"
+      },
+      {
+        "name": "Kotlin"
+      },
+      {
+        "name": "Objective-C",
+        "aliases": [
+          "objective c"
+        ]
+      },
+      {
+        "name": "Scala"
+      },
+      {
+        "name": "R",
+        "aliases": [
+          "r language",
+          "r studio",
+          "rstudio"
+        ]
+      },
+      {
+        "name": "MATLAB"
+      },
+      {
+        "name": "Perl"
+      },
+      {
+        "name": "Dart"
+      },
+      {
+        "name": "Elixir"
+      },
+      {
+        "name": "Haskell"
+      },
+      {
+        "name": "Lua"
+      },
+      {
+        "name": "Groovy"
+      },
+      {
+        "name": "Assembly",
+        "aliases": [
+          "assembler"
+        ]
+      },
+      {
+        "name": "VBA",
+        "aliases": [
+          "visual basic for applications"
+        ]
+      },
+      {
+        "name": "COBOL"
+      },
+      {
+        "name": "Solidity"
+      }
+    ],
+    "Web & Frontend": [
+      {
+        "name": "HTML",
+        "aliases": [
+          "html5"
+        ]
+      },
+      {
+        "name": "CSS",
+        "aliases": [
+          "css3"
+        ]
+      },
+      {
+        "name": "React",
+        "aliases": [
+          "reactjs",
+          "react js"
+        ]
+      },
+      {
+        "name": "Next.js",
+        "aliases": [
+          "nextjs",
+          "next js"
+        ]
+      },
+      {
+        "name": "Vue.js",
+        "aliases": [
+          "vuejs",
+          "vue js",
+          "vue"
+        ]
+      },
+      {
+        "name": "Angular",
+        "aliases": [
+          "angularjs"
+        ]
+      },
+      {
+        "name": "Svelte",
+        "aliases": [
+          "sveltekit"
+        ]
+      },
+      {
+        "name": "Node.js",
+        "aliases": [
+          "nodejs",
+          "node js"
+        ]
+      },
+      {
+        "name": "Express.js",
+        "aliases": [
+          "expressjs",
+          "express js"
+        ]
+      },
+      {
+        "name": "jQuery"
+      },
+      {
+        "name": "Sass",
+        "aliases": [
+          "scss"
+        ]
+      },
+      {
+        "name": "Bootstrap"
+      },
+      {
+        "name": "Tailwind CSS",
+        "aliases": [
+          "tailwindcss",
+          "tailwind"
+        ]
+      },
+      {
+        "name": "Webpack"
+      },
+      {
+        "name": "Vite"
+      },
+      {
+        "name": "Responsive Design",
+        "aliases": [
+          "mobile-first design",
+          "responsive web design"
+        ]
+      },
+      {
+        "name": "Web Accessibility",
+        "aliases": [
+          "a11y",
+          "wcag",
+          "aria",
+          "accessible design"
+        ]
+      },
+      {
+        "name": "Progressive Web Apps",
+        "aliases": [
+          "pwa"
+        ]
+      },
+      {
+        "name": "WebSockets",
+        "aliases": [
+          "websocket"
+        ]
+      },
+      {
+        "name": "REST API",
+        "aliases": [
+          "rest apis",
+          "restful api",
+          "restful apis",
+          "api development",
+          "api design"
+        ]
+      },
+      {
+        "name": "GraphQL"
+      },
+      {
+        "name": "gRPC"
+      }
+    ],
+    "Backend & Frameworks": [
+      {
+        "name": "Flask"
+      },
+      {
+        "name": "Django"
+      },
+      {
+        "name": "FastAPI",
+        "aliases": [
+          "fast api"
+        ]
+      },
+      {
+        "name": "Spring Boot",
+        "aliases": [
+          "springboot",
+          "spring"
+        ]
+      },
+      {
+        "name": "Laravel"
+      },
+      {
+        "name": "Ruby on Rails",
+        "aliases": [
+          "rails"
+        ]
+      },
+      {
+        "name": "ASP.NET",
+        "aliases": [
+          "asp net",
+          "aspnet"
+        ]
+      },
+      {
+        "name": "NestJS",
+        "aliases": [
+          "nest js"
+        ]
+      },
+      {
+        "name": "Celery"
+      },
+      {
+        "name": "RabbitMQ"
+      },
+      {
+        "name": "Apache Kafka",
+        "aliases": [
+          "kafka"
+        ]
+      },
+      {
+        "name": "Microservices",
+        "aliases": [
+          "microservice architecture"
+        ]
+      },
+      {
+        "name": "Distributed Systems"
+      },
+      {
+        "name": "Event-Driven Architecture",
+        "aliases": [
+          "event driven architecture",
+          "event sourcing"
+        ]
+      },
+      {
+        "name": "System Design",
+        "aliases": [
+          "systems design",
+          "architecture design",
+          "solution architecture"
+        ]
+      },
+      {
+        "name": "Design Patterns"
+      },
+      {
+        "name": "OAuth",
+        "aliases": [
+          "oauth2",
+          "oauth 2.0"
+        ]
+      },
+      {
+        "name": "JWT",
+        "aliases": [
+          "json web token",
+          "json web tokens"
+        ]
+      },
+      {
+        "name": "Serverless",
+        "aliases": [
+          "aws lambda",
+          "lambda functions",
+          "cloud functions"
+        ]
+      }
+    ],
+    "Databases": [
+      {
+        "name": "SQL"
+      },
+      {
+        "name": "PostgreSQL",
+        "aliases": [
+          "postgres"
+        ]
+      },
+      {
+        "name": "MySQL"
+      },
+      {
+        "name": "SQLite"
+      },
+      {
+        "name": "Microsoft SQL Server",
+        "aliases": [
+          "mssql",
+          "sql server",
+          "t-sql",
+          "tsql"
+        ]
+      },
+      {
+        "name": "Oracle Database",
+        "aliases": [
+          "oracle db",
+          "pl/sql",
+          "plsql"
+        ]
+      },
+      {
+        "name": "MongoDB",
+        "aliases": [
+          "mongo"
+        ]
+      },
+      {
+        "name": "Redis"
+      },
+      {
+        "name": "Elasticsearch",
+        "aliases": [
+          "elastic search",
+          "opensearch"
+        ]
+      },
+      {
+        "name": "DynamoDB"
+      },
+      {
+        "name": "Cassandra"
+      },
+      {
+        "name": "Neo4j"
+      },
+      {
+        "name": "Firebase",
+        "aliases": [
+          "firestore"
+        ]
+      },
+      {
+        "name": "Supabase"
+      },
+      {
+        "name": "Snowflake"
+      },
+      {
+        "name": "BigQuery",
+        "aliases": [
+          "big query"
+        ]
+      },
+      {
+        "name": "Redshift"
+      },
+      {
+        "name": "Database Design",
+        "aliases": [
+          "schema design",
+          "data modeling",
+          "data modelling",
+          "database modeling",
+          "normalization"
+        ]
+      },
+      {
+        "name": "Query Optimization",
+        "aliases": [
+          "query tuning",
+          "index tuning"
+        ]
+      },
+      {
+        "name": "ETL",
+        "aliases": [
+          "elt",
+          "extract transform load",
+          "data pipelines",
+          "data pipeline"
+        ]
+      }
+    ],
+    "Cloud & DevOps": [
+      {
+        "name": "AWS",
+        "aliases": [
+          "amazon web services"
+        ]
+      },
+      {
+        "name": "Azure",
+        "aliases": [
+          "microsoft azure"
+        ]
+      },
+      {
+        "name": "GCP",
+        "aliases": [
+          "google cloud",
+          "google cloud platform"
+        ]
+      },
+      {
+        "name": "Cloud Platforms",
+        "aliases": [
+          "cloud computing",
+          "cloud infrastructure",
+          "cloud native"
+        ]
+      },
+      {
+        "name": "Docker",
+        "aliases": [
+          "containerisation",
+          "containerization",
+          "containerised",
+          "containerized"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "aliases": [
+          "k8s",
+          "eks",
+          "aks",
+          "gke"
+        ]
+      },
+      {
+        "name": "Terraform",
+        "aliases": [
+          "infrastructure as code",
+          "iac"
+        ]
+      },
+      {
+        "name": "Ansible"
+      },
+      {
+        "name": "Jenkins"
+      },
+      {
+        "name": "GitHub Actions",
+        "aliases": [
+          "github action"
+        ]
+      },
+      {
+        "name": "GitLab CI",
+        "aliases": [
+          "gitlab ci/cd"
+        ]
+      },
+      {
+        "name": "CI/CD",
+        "aliases": [
+          "cicd",
+          "ci cd",
+          "continuous integration",
+          "continuous delivery",
+          "continuous deployment"
+        ]
+      },
+      {
+        "name": "Git",
+        "aliases": [
+          "version control"
+        ]
+      },
+      {
+        "name": "Bitbucket"
+      },
+      {
+        "name": "Linux",
+        "aliases": [
+          "unix",
+          "ubuntu",
+          "centos",
+          "rhel"
+        ]
+      },
+      {
+        "name": "Bash",
+        "aliases": [
+          "shell scripting",
+          "shell script"
+        ]
+      },
+      {
+        "name": "PowerShell"
+      },
+      {
+        "name": "Nginx"
+      },
+      {
+        "name": "Monitoring",
+        "aliases": [
+          "observability",
+          "prometheus",
+          "grafana",
+          "datadog",
+          "new relic",
+          "instrumented"
+        ]
+      },
+      {
+        "name": "Incident Response",
+        "aliases": [
+          "on-call",
+          "on call rotation",
+          "postmortem",
+          "sre"
+        ]
+      },
+      {
+        "name": "Site Reliability",
+        "aliases": [
+          "site reliability engineering",
+          "sla",
+          "slo"
+        ]
+      },
+      {
+        "name": "Load Balancing",
+        "aliases": [
+          "load balancer"
+        ]
+      },
+      {
+        "name": "Caching",
+        "aliases": [
+          "cdn",
+          "cache layer"
+        ]
+      }
+    ],
+    "Data & AI": [
+      {
+        "name": "Machine Learning",
+        "aliases": [
+          "ml",
+          "ml engineering",
+          "ml pipeline",
+          "ml pipelines",
+          "ml model",
+          "ml models",
+          "predictive modeling",
+          "predictive modelling"
+        ]
+      },
+      {
+        "name": "Deep Learning",
+        "aliases": [
+          "neural network",
+          "neural networks"
+        ]
+      },
+      {
+        "name": "NLP",
+        "aliases": [
+          "natural language processing",
+          "text mining"
+        ]
+      },
+      {
+        "name": "Computer Vision",
+        "aliases": [
+          "image recognition",
+          "object detection"
+        ]
+      },
+      {
+        "name": "LLMs",
+        "aliases": [
+          "large language model",
+          "large language models",
+          "llm"
+        ]
+      },
+      {
+        "name": "Prompt Engineering"
+      },
+      {
+        "name": "RAG",
+        "aliases": [
+          "retrieval augmented generation",
+          "retrieval-augmented generation"
+        ]
+      },
+      {
+        "name": "MLOps",
+        "aliases": [
+          "mlflow",
+          "model deployment",
+          "model monitoring",
+          "model drift"
+        ]
+      },
+      {
+        "name": "AutoML"
+      },
+      {
+        "name": "TensorFlow",
+        "aliases": [
+          "keras"
+        ]
+      },
+      {
+        "name": "PyTorch",
+        "aliases": [
+          "torch"
+        ]
+      },
+      {
+        "name": "Scikit-learn",
+        "aliases": [
+          "sklearn",
+          "scikit learn"
+        ]
+      },
+      {
+        "name": "XGBoost",
+        "aliases": [
+          "lightgbm",
+          "gradient boosting"
+        ]
+      },
+      {
+        "name": "Pandas"
+      },
+      {
+        "name": "NumPy",
+        "aliases": [
+          "numpy"
+        ]
+      },
+      {
+        "name": "Feature Engineering",
+        "aliases": [
+          "feature pipeline",
+          "feature pipelines",
+          "feature selection",
+          "feature extraction"
+        ]
+      },
+      {
+        "name": "Data Analysis",
+        "aliases": [
+          "data analytics",
+          "analysed data",
+          "analyzed data",
+          "exploratory data analysis",
+          "eda"
+        ]
+      },
+      {
+        "name": "Data Engineering",
+        "aliases": [
+          "data warehouse",
+          "data warehousing",
+          "data lake"
+        ]
+      },
+      {
+        "name": "Data Visualization",
+        "aliases": [
+          "data visualisation",
+          "dashboarding",
+          "dashboards"
+        ]
+      },
+      {
+        "name": "Statistics",
+        "aliases": [
+          "statistical analysis",
+          "statistical modeling",
+          "statistical modelling",
+          "hypothesis testing",
+          "regression analysis"
+        ]
+      },
+      {
+        "name": "A/B Testing",
+        "aliases": [
+          "a/b test",
+          "ab testing",
+          "split testing",
+          "experimentation"
+        ]
+      },
+      {
+        "name": "Forecasting",
+        "aliases": [
+          "demand forecasting",
+          "time series",
+          "time-series"
+        ]
+      },
+      {
+        "name": "Power BI",
+        "aliases": [
+          "powerbi"
+        ]
+      },
+      {
+        "name": "Tableau"
+      },
+      {
+        "name": "Looker"
+      },
+      {
+        "name": "Apache Spark",
+        "aliases": [
+          "spark",
+          "pyspark"
+        ]
+      },
+      {
+        "name": "Airflow",
+        "aliases": [
+          "apache airflow",
+          "dbt"
+        ]
+      },
+      {
+        "name": "Excel",
+        "aliases": [
+          "microsoft excel",
+          "ms excel",
+          "advanced excel",
+          "pivot table",
+          "pivot tables",
+          "spreadsheets",
+          "vlookup"
+        ]
+      },
+      {
+        "name": "Google Sheets"
+      }
+    ],
+    "Quality & Security": [
+      {
+        "name": "Unit Testing",
+        "aliases": [
+          "unit tests"
+        ]
+      },
+      {
+        "name": "Integration Testing",
+        "aliases": [
+          "integration tests",
+          "end-to-end testing",
+          "e2e testing"
+        ]
+      },
+      {
+        "name": "Test Automation",
+        "aliases": [
+          "automated testing",
+          "automation testing"
+        ]
+      },
+      {
+        "name": "PyTest",
+        "aliases": [
+          "pytest"
+        ]
+      },
+      {
+        "name": "Jest"
+      },
+      {
+        "name": "Selenium"
+      },
+      {
+        "name": "Playwright",
+        "aliases": [
+          "cypress"
+        ]
+      },
+      {
+        "name": "API Testing",
+        "aliases": [
+          "postman"
+        ]
+      },
+      {
+        "name": "Performance Testing",
+        "aliases": [
+          "load testing",
+          "stress testing"
+        ]
+      },
+      {
+        "name": "QA",
+        "aliases": [
+          "quality assurance",
+          "test plan",
+          "test plans",
+          "test cases"
+        ]
+      },
+      {
+        "name": "Cybersecurity",
+        "aliases": [
+          "information security",
+          "infosec",
+          "security engineering"
+        ]
+      },
+      {
+        "name": "Cloud Security"
+      },
+      {
+        "name": "Penetration Testing",
+        "aliases": [
+          "pen testing",
+          "pentesting",
+          "ethical hacking",
+          "vulnerability assessment"
+        ]
+      },
+      {
+        "name": "Cryptography",
+        "aliases": [
+          "encryption"
+        ]
+      },
+      {
+        "name": "Compliance",
+        "aliases": [
+          "gdpr",
+          "hipaa",
+          "soc 2",
+          "iso 27001",
+          "pci dss",
+          "regulatory compliance"
+        ]
+      },
+      {
+        "name": "Risk Management",
+        "aliases": [
+          "risk assessment",
+          "risk mitigation"
+        ]
+      },
+      {
+        "name": "Algorithms",
+        "aliases": [
+          "data structures",
+          "algorithm design"
+        ]
+      }
+    ],
+    "Mobile": [
+      {
+        "name": "Android",
+        "aliases": [
+          "android studio"
+        ]
+      },
+      {
+        "name": "iOS",
+        "aliases": [
+          "ios development",
+          "xcode"
+        ]
+      },
+      {
+        "name": "React Native",
+        "aliases": [
+          "react-native"
+        ]
+      },
+      {
+        "name": "Flutter"
+      },
+      {
+        "name": "Mobile Development",
+        "aliases": [
+          "mobile app development",
+          "mobile apps"
+        ]
+      },
+      {
+        "name": "App Store Optimization",
+        "aliases": [
+          "aso"
+        ]
+      }
+    ],
+    "Design & UX": [
+      {
+        "name": "Figma"
+      },
+      {
+        "name": "Sketch"
+      },
+      {
+        "name": "Adobe XD",
+        "aliases": [
+          "adobe experience design"
+        ]
+      },
+      {
+        "name": "Adobe Photoshop",
+        "aliases": [
+          "photoshop"
+        ]
+      },
+      {
+        "name": "Adobe Illustrator",
+        "aliases": [
+          "illustrator"
+        ]
+      },
+      {
+        "name": "Adobe InDesign",
+        "aliases": [
+          "indesign"
+        ]
+      },
+      {
+        "name": "Adobe Premiere",
+        "aliases": [
+          "premiere pro"
+        ]
+      },
+      {
+        "name": "After Effects"
+      },
+      {
+        "name": "Canva"
+      },
+      {
+        "name": "Blender",
+        "aliases": [
+          "3d modeling",
+          "3d modelling"
+        ]
+      },
+      {
+        "name": "User Research",
+        "aliases": [
+          "user interviews",
+          "user interview",
+          "customer research",
+          "contextual inquiry"
+        ]
+      },
+      {
+        "name": "Usability Testing",
+        "aliases": [
+          "usability test",
+          "usability tests",
+          "user testing"
+        ]
+      },
+      {
+        "name": "Wireframing",
+        "aliases": [
+          "wireframe",
+          "wireframes"
+        ]
+      },
+      {
+        "name": "Prototyping",
+        "aliases": [
+          "prototype",
+          "prototypes",
+          "clickable prototype"
+        ]
+      },
+      {
+        "name": "Design Systems",
+        "aliases": [
+          "design system",
+          "component library",
+          "style guide"
+        ]
+      },
+      {
+        "name": "Interaction Design",
+        "aliases": [
+          "ixd",
+          "micro-interactions"
+        ]
+      },
+      {
+        "name": "Visual Design",
+        "aliases": [
+          "graphic design",
+          "layout design"
+        ]
+      },
+      {
+        "name": "User Experience",
+        "aliases": [
+          "ux",
+          "ux design",
+          "ui/ux",
+          "ui ux"
+        ]
+      },
+      {
+        "name": "User Interface Design",
+        "aliases": [
+          "ui design"
+        ]
+      },
+      {
+        "name": "Information Architecture"
+      },
+      {
+        "name": "Typography"
+      },
+      {
+        "name": "Illustration"
+      },
+      {
+        "name": "Motion Design",
+        "aliases": [
+          "motion graphics",
+          "animation"
+        ]
+      },
+      {
+        "name": "Brand Identity",
+        "aliases": [
+          "branding",
+          "brand design",
+          "visual identity"
+        ]
+      },
+      {
+        "name": "Journey Mapping",
+        "aliases": [
+          "customer journey",
+          "user journey",
+          "service design"
+        ]
+      },
+      {
+        "name": "Accessibility Design",
+        "aliases": [
+          "inclusive design"
+        ]
+      }
+    ],
+    "Product & Program": [
+      {
+        "name": "Product Strategy",
+        "aliases": [
+          "product vision",
+          "product direction"
+        ]
+      },
+      {
+        "name": "Product Management",
+        "aliases": [
+          "product owner",
+          "product manager"
+        ]
+      },
+      {
+        "name": "Roadmap Planning",
+        "aliases": [
+          "product roadmap",
+          "roadmapping",
+          "roadmaps"
+        ]
+      },
+      {
+        "name": "Stakeholder Management",
+        "aliases": [
+          "stakeholder communication",
+          "stakeholder engagement",
+          "stakeholders"
+        ]
+      },
+      {
+        "name": "Requirements Gathering",
+        "aliases": [
+          "user stories",
+          "acceptance criteria",
+          "prd",
+          "brd",
+          "functional specification"
+        ]
+      },
+      {
+        "name": "Agile",
+        "aliases": [
+          "agile methodology",
+          "agile delivery"
+        ]
+      },
+      {
+        "name": "Scrum",
+        "aliases": [
+          "sprint planning",
+          "scrum master",
+          "retrospectives",
+          "standups"
+        ]
+      },
+      {
+        "name": "Kanban"
+      },
+      {
+        "name": "Jira",
+        "aliases": [
+          "confluence",
+          "atlassian"
+        ]
+      },
+      {
+        "name": "Asana",
+        "aliases": [
+          "trello",
+          "monday.com",
+          "clickup"
+        ]
+      },
+      {
+        "name": "Project Management",
+        "aliases": [
+          "programme management",
+          "program management",
+          "project delivery",
+          "pmp",
+          "prince2"
+        ]
+      },
+      {
+        "name": "Business Analysis",
+        "aliases": [
+          "business analyst",
+          "process mapping",
+          "gap analysis"
+        ]
+      },
+      {
+        "name": "Product Analytics",
+        "aliases": [
+          "mixpanel",
+          "amplitude",
+          "product metrics",
+          "funnel analysis",
+          "retention analysis"
+        ]
+      },
+      {
+        "name": "Go-to-Market",
+        "aliases": [
+          "go to market",
+          "gtm",
+          "product launch",
+          "product launches"
+        ]
+      },
+      {
+        "name": "Prioritization",
+        "aliases": [
+          "prioritisation",
+          "backlog grooming",
+          "backlog management",
+          "rice scoring"
+        ]
+      },
+      {
+        "name": "Cross-functional Leadership",
+        "aliases": [
+          "cross-functional",
+          "cross functional",
+          "matrix management"
+        ]
+      },
+      {
+        "name": "Vendor Management",
+        "aliases": [
+          "supplier management",
+          "procurement"
+        ]
+      },
+      {
+        "name": "Change Management"
+      }
+    ],
+    "Marketing": [
+      {
+        "name": "SEO",
+        "aliases": [
+          "search engine optimization",
+          "search engine optimisation",
+          "organic search"
+        ]
+      },
+      {
+        "name": "SEM",
+        "aliases": [
+          "paid search",
+          "google ads",
+          "adwords",
+          "ppc",
+          "pay per click"
+        ]
+      },
+      {
+        "name": "Content Marketing",
+        "aliases": [
+          "content strategy",
+          "editorial calendar",
+          "blogging"
+        ]
+      },
+      {
+        "name": "Social Media",
+        "aliases": [
+          "social media marketing",
+          "community management",
+          "instagram",
+          "linkedin marketing",
+          "tiktok"
+        ]
+      },
+      {
+        "name": "Email Marketing",
+        "aliases": [
+          "mailchimp",
+          "klaviyo",
+          "email campaigns",
+          "newsletters"
+        ]
+      },
+      {
+        "name": "Marketing Automation",
+        "aliases": [
+          "hubspot",
+          "marketo",
+          "pardot",
+          "drip campaigns"
+        ]
+      },
+      {
+        "name": "Campaign Management",
+        "aliases": [
+          "campaign planning",
+          "campaign execution",
+          "marketing campaigns",
+          "campaigns",
+          "ran campaigns",
+          "advertising campaigns"
+        ]
+      },
+      {
+        "name": "Brand Strategy",
+        "aliases": [
+          "brand positioning",
+          "brand management"
+        ]
+      },
+      {
+        "name": "Market Research",
+        "aliases": [
+          "competitive analysis",
+          "competitor analysis",
+          "market analysis"
+        ]
+      },
+      {
+        "name": "Copywriting",
+        "aliases": [
+          "copywriter",
+          "ad copy",
+          "messaging"
+        ]
+      },
+      {
+        "name": "Google Analytics",
+        "aliases": [
+          "ga4",
+          "web analytics"
+        ]
+      },
+      {
+        "name": "Conversion Optimization",
+        "aliases": [
+          "cro",
+          "conversion rate optimization",
+          "landing page optimization"
+        ]
+      },
+      {
+        "name": "Influencer Marketing",
+        "aliases": [
+          "partnerships marketing"
+        ]
+      },
+      {
+        "name": "Event Marketing",
+        "aliases": [
+          "event planning",
+          "trade shows",
+          "webinars"
+        ]
+      },
+      {
+        "name": "Public Relations",
+        "aliases": [
+          "pr",
+          "media relations",
+          "press releases"
+        ]
+      },
+      {
+        "name": "Creative Direction",
+        "aliases": [
+          "art direction",
+          "creative strategy"
+        ]
+      },
+      {
+        "name": "Budget Management",
+        "aliases": [
+          "budget planning",
+          "budget ownership",
+          "p&l",
+          "cost control",
+          "annual budget",
+          "operating budget",
+          "managed a budget"
+        ]
+      },
+      {
+        "name": "Product Marketing",
+        "aliases": [
+          "positioning and messaging"
+        ]
+      }
+    ],
+    "Sales & Customer": [
+      {
+        "name": "Sales Strategy",
+        "aliases": [
+          "sales planning",
+          "go-to-market strategy"
+        ]
+      },
+      {
+        "name": "CRM",
+        "aliases": [
+          "salesforce",
+          "hubspot crm",
+          "customer relationship management",
+          "zoho"
+        ]
+      },
+      {
+        "name": "Pipeline Management",
+        "aliases": [
+          "sales pipeline",
+          "deal pipeline",
+          "opportunity management"
+        ]
+      },
+      {
+        "name": "Lead Generation",
+        "aliases": [
+          "prospecting",
+          "cold calling",
+          "cold outreach",
+          "lead gen",
+          "sdr"
+        ]
+      },
+      {
+        "name": "Negotiation",
+        "aliases": [
+          "contract negotiation",
+          "deal negotiation"
+        ]
+      },
+      {
+        "name": "Account Management",
+        "aliases": [
+          "key accounts",
+          "account executive",
+          "client management"
+        ]
+      },
+      {
+        "name": "Relationship Management",
+        "aliases": [
+          "client relationships",
+          "customer relationships"
+        ]
+      },
+      {
+        "name": "Sales Forecasting",
+        "aliases": [
+          "revenue forecasting",
+          "quota planning"
+        ]
+      },
+      {
+        "name": "Revenue Growth",
+        "aliases": [
+          "revenue generation",
+          "quota attainment",
+          "exceeded quota",
+          "arr growth"
+        ]
+      },
+      {
+        "name": "Territory Expansion",
+        "aliases": [
+          "territory management",
+          "market expansion"
+        ]
+      },
+      {
+        "name": "Client Retention",
+        "aliases": [
+          "churn reduction",
+          "renewals",
+          "upsell",
+          "cross-sell"
+        ]
+      },
+      {
+        "name": "Customer Success",
+        "aliases": [
+          "customer onboarding",
+          "account health"
+        ]
+      },
+      {
+        "name": "Customer Support",
+        "aliases": [
+          "customer service",
+          "help desk",
+          "helpdesk",
+          "technical support",
+          "zendesk",
+          "ticket resolution"
+        ]
+      },
+      {
+        "name": "B2B Sales",
+        "aliases": [
+          "enterprise sales",
+          "solution selling",
+          "consultative selling"
+        ]
+      },
+      {
+        "name": "Retail Sales",
+        "aliases": [
+          "merchandising",
+          "point of sale",
+          "pos"
+        ]
+      }
+    ],
+    "Finance & Accounting": [
+      {
+        "name": "Financial Reporting",
+        "aliases": [
+          "financial statements",
+          "month-end close",
+          "monthly close",
+          "year-end close"
+        ]
+      },
+      {
+        "name": "Financial Analysis",
+        "aliases": [
+          "fp&a",
+          "variance analysis",
+          "financial modeling",
+          "financial modelling"
+        ]
+      },
+      {
+        "name": "Accounting",
+        "aliases": [
+          "bookkeeping",
+          "general ledger",
+          "accounts payable",
+          "accounts receivable",
+          "reconciliations"
+        ]
+      },
+      {
+        "name": "Auditing",
+        "aliases": [
+          "audit",
+          "internal audit",
+          "statutory audit",
+          "external audit"
+        ]
+      },
+      {
+        "name": "IFRS",
+        "aliases": [
+          "gaap",
+          "us gaap",
+          "accounting standards"
+        ]
+      },
+      {
+        "name": "Taxation",
+        "aliases": [
+          "tax compliance",
+          "tax returns",
+          "vat",
+          "corporate tax"
+        ]
+      },
+      {
+        "name": "Budgeting",
+        "aliases": [
+          "budget forecasting",
+          "cost accounting"
+        ]
+      },
+      {
+        "name": "Payroll"
+      },
+      {
+        "name": "Treasury",
+        "aliases": [
+          "cash flow management",
+          "working capital"
+        ]
+      },
+      {
+        "name": "Investment Analysis",
+        "aliases": [
+          "equity research",
+          "portfolio management",
+          "valuation",
+          "dcf"
+        ]
+      },
+      {
+        "name": "QuickBooks",
+        "aliases": [
+          "xero",
+          "sage",
+          "netsuite"
+        ]
+      },
+      {
+        "name": "SAP",
+        "aliases": [
+          "erp",
+          "oracle financials"
+        ]
+      },
+      {
+        "name": "Credit Analysis",
+        "aliases": [
+          "underwriting",
+          "credit risk"
+        ]
+      },
+      {
+        "name": "Procure to Pay",
+        "aliases": [
+          "p2p",
+          "order to cash",
+          "o2c"
+        ]
+      }
+    ],
+    "Healthcare": [
+      {
+        "name": "Patient Care",
+        "aliases": [
+          "patient assessment",
+          "bedside care",
+          "direct patient care"
+        ]
+      },
+      {
+        "name": "Clinical Documentation",
+        "aliases": [
+          "charting",
+          "care plans",
+          "care plan"
+        ]
+      },
+      {
+        "name": "Triage",
+        "aliases": [
+          "emergency triage",
+          "patient triage"
+        ]
+      },
+      {
+        "name": "Medication Administration",
+        "aliases": [
+          "medication management",
+          "iv therapy",
+          "drug administration"
+        ]
+      },
+      {
+        "name": "Electronic Health Records",
+        "aliases": [
+          "ehr",
+          "emr",
+          "epic systems",
+          "cerner"
+        ]
+      },
+      {
+        "name": "Infection Control",
+        "aliases": [
+          "sterilization",
+          "sterilisation",
+          "aseptic technique"
+        ]
+      },
+      {
+        "name": "Vital Signs Monitoring",
+        "aliases": [
+          "cardiac monitoring",
+          "patient monitoring"
+        ]
+      },
+      {
+        "name": "Phlebotomy",
+        "aliases": [
+          "venipuncture"
+        ]
+      },
+      {
+        "name": "Basic Life Support",
+        "aliases": [
+          "bls",
+          "acls",
+          "cpr",
+          "advanced cardiac life support"
+        ]
+      },
+      {
+        "name": "Clinical Research",
+        "aliases": [
+          "clinical trials",
+          "protocol adherence",
+          "good clinical practice"
+        ]
+      },
+      {
+        "name": "Pharmacology",
+        "aliases": [
+          "dosage calculation"
+        ]
+      },
+      {
+        "name": "Medical Coding",
+        "aliases": [
+          "icd-10",
+          "cpt coding",
+          "medical billing"
+        ]
+      },
+      {
+        "name": "Radiology",
+        "aliases": [
+          "imaging",
+          "x-ray",
+          "mri",
+          "ct scan"
+        ]
+      },
+      {
+        "name": "Physical Therapy",
+        "aliases": [
+          "physiotherapy",
+          "rehabilitation"
+        ]
+      },
+      {
+        "name": "Mental Health Support",
+        "aliases": [
+          "counselling",
+          "counseling",
+          "psychotherapy",
+          "case management"
+        ]
+      },
+      {
+        "name": "Patient Education",
+        "aliases": [
+          "health education",
+          "discharge planning"
+        ]
+      }
+    ],
+    "Education & Research": [
+      {
+        "name": "Curriculum Development",
+        "aliases": [
+          "curriculum design",
+          "syllabus design",
+          "lesson planning",
+          "lesson plans"
+        ]
+      },
+      {
+        "name": "Classroom Management",
+        "aliases": [
+          "behaviour management",
+          "behavior management"
+        ]
+      },
+      {
+        "name": "Instructional Design",
+        "aliases": [
+          "e-learning",
+          "elearning",
+          "learning design",
+          "scorm"
+        ]
+      },
+      {
+        "name": "Assessment Design",
+        "aliases": [
+          "student assessment",
+          "grading",
+          "rubrics",
+          "exam design"
+        ]
+      },
+      {
+        "name": "Tutoring",
+        "aliases": [
+          "mentoring students",
+          "academic support"
+        ]
+      },
+      {
+        "name": "Learning Management Systems",
+        "aliases": [
+          "lms",
+          "moodle",
+          "canvas lms",
+          "blackboard"
+        ]
+      },
+      {
+        "name": "Academic Research",
+        "aliases": [
+          "literature review",
+          "peer review",
+          "research methodology",
+          "published papers",
+          "publications"
+        ]
+      },
+      {
+        "name": "Grant Writing",
+        "aliases": [
+          "research funding",
+          "grant proposals"
+        ]
+      },
+      {
+        "name": "Laboratory Techniques",
+        "aliases": [
+          "lab work",
+          "pcr",
+          "chromatography",
+          "spectroscopy",
+          "titration"
+        ]
+      },
+      {
+        "name": "Data Collection",
+        "aliases": [
+          "survey design",
+          "field research",
+          "qualitative research",
+          "quantitative research"
+        ]
+      },
+      {
+        "name": "Special Education",
+        "aliases": [
+          "sen",
+          "iep",
+          "individualized education"
+        ]
+      }
+    ],
+    "HR & People": [
+      {
+        "name": "Recruiting",
+        "aliases": [
+          "recruitment",
+          "talent acquisition",
+          "sourcing candidates",
+          "full-cycle recruiting",
+          "headhunting"
+        ]
+      },
+      {
+        "name": "Interviewing",
+        "aliases": [
+          "candidate screening",
+          "behavioural interviewing",
+          "behavioral interviewing"
+        ]
+      },
+      {
+        "name": "Employee Onboarding",
+        "aliases": [
+          "employee onboarding",
+          "new hire onboarding",
+          "induction",
+          "staff induction"
+        ]
+      },
+      {
+        "name": "Performance Management",
+        "aliases": [
+          "performance reviews",
+          "appraisals",
+          "okrs",
+          "kpis"
+        ]
+      },
+      {
+        "name": "Employee Relations",
+        "aliases": [
+          "conflict resolution",
+          "grievance handling",
+          "disciplinary procedures"
+        ]
+      },
+      {
+        "name": "Compensation and Benefits",
+        "aliases": [
+          "comp and ben",
+          "compensation planning",
+          "benefits administration",
+          "payroll benefits"
+        ]
+      },
+      {
+        "name": "HRIS",
+        "aliases": [
+          "workday",
+          "bamboohr",
+          "successfactors"
+        ]
+      },
+      {
+        "name": "Learning and Development",
+        "aliases": [
+          "l&d",
+          "training delivery",
+          "employee training",
+          "training programs",
+          "training programmes"
+        ]
+      },
+      {
+        "name": "Diversity and Inclusion",
+        "aliases": [
+          "dei",
+          "d&i",
+          "inclusion initiatives"
+        ]
+      },
+      {
+        "name": "Employment Law",
+        "aliases": [
+          "labour law",
+          "labor law",
+          "hr compliance"
+        ]
+      },
+      {
+        "name": "Workforce Planning",
+        "aliases": [
+          "headcount planning",
+          "succession planning"
+        ]
+      },
+      {
+        "name": "Employee Engagement",
+        "aliases": [
+          "culture building",
+          "engagement surveys"
+        ]
+      }
+    ],
+    "Legal": [
+      {
+        "name": "Contract Law",
+        "aliases": [
+          "contract drafting",
+          "contract review",
+          "commercial contracts"
+        ]
+      },
+      {
+        "name": "Litigation",
+        "aliases": [
+          "dispute resolution",
+          "court proceedings",
+          "advocacy"
+        ]
+      },
+      {
+        "name": "Legal Research",
+        "aliases": [
+          "case law research",
+          "westlaw",
+          "lexisnexis"
+        ]
+      },
+      {
+        "name": "Corporate Law",
+        "aliases": [
+          "mergers and acquisitions",
+          "m&a",
+          "corporate governance"
+        ]
+      },
+      {
+        "name": "Intellectual Property",
+        "aliases": [
+          "ip law",
+          "trademarks",
+          "patents",
+          "copyright"
+        ]
+      },
+      {
+        "name": "Regulatory Affairs",
+        "aliases": [
+          "regulatory filings",
+          "regulatory submissions"
+        ]
+      },
+      {
+        "name": "Due Diligence"
+      },
+      {
+        "name": "Legal Drafting",
+        "aliases": [
+          "pleadings",
+          "legal memoranda",
+          "briefs"
+        ]
+      },
+      {
+        "name": "Data Privacy Law",
+        "aliases": [
+          "privacy law",
+          "data protection"
+        ]
+      }
+    ],
+    "Operations & Supply Chain": [
+      {
+        "name": "Supply Chain Management",
+        "aliases": [
+          "supply chain",
+          "logistics",
+          "distribution"
+        ]
+      },
+      {
+        "name": "Inventory Management",
+        "aliases": [
+          "stock control",
+          "inventory control",
+          "warehousing"
+        ]
+      },
+      {
+        "name": "Process Improvement",
+        "aliases": [
+          "process optimization",
+          "process optimisation",
+          "process redesign",
+          "continuous improvement",
+          "kaizen"
+        ]
+      },
+      {
+        "name": "Lean Six Sigma",
+        "aliases": [
+          "lean",
+          "six sigma",
+          "5s"
+        ]
+      },
+      {
+        "name": "Operations Management",
+        "aliases": [
+          "operational excellence",
+          "daily operations",
+          "operations manager",
+          "operations management",
+          "front of house operations"
+        ]
+      },
+      {
+        "name": "Demand Planning",
+        "aliases": [
+          "capacity planning",
+          "production planning",
+          "mrp"
+        ]
+      },
+      {
+        "name": "Quality Control",
+        "aliases": [
+          "qc",
+          "quality inspection",
+          "iso 9001"
+        ]
+      },
+      {
+        "name": "Health and Safety",
+        "aliases": [
+          "hse",
+          "osha",
+          "workplace safety",
+          "safety compliance"
+        ]
+      },
+      {
+        "name": "Manufacturing",
+        "aliases": [
+          "production line",
+          "assembly line",
+          "cnc",
+          "fabrication"
+        ]
+      },
+      {
+        "name": "Facilities Management",
+        "aliases": [
+          "maintenance planning",
+          "preventive maintenance"
+        ]
+      },
+      {
+        "name": "Fleet Management",
+        "aliases": [
+          "transport planning",
+          "route optimization"
+        ]
+      },
+      {
+        "name": "Hospitality Operations",
+        "aliases": [
+          "front of house",
+          "food and beverage",
+          "housekeeping",
+          "guest services"
+        ]
+      },
+      {
+        "name": "Event Coordination",
+        "aliases": [
+          "event management",
+          "event logistics"
+        ]
+      }
+    ],
+    "Media & Communication": [
+      {
+        "name": "Technical Writing",
+        "aliases": [
+          "documentation",
+          "user guides",
+          "api documentation",
+          "release notes"
+        ]
+      },
+      {
+        "name": "Editing",
+        "aliases": [
+          "proofreading",
+          "sub-editing",
+          "copy editing"
+        ]
+      },
+      {
+        "name": "Journalism",
+        "aliases": [
+          "investigative reporting",
+          "feature writing"
+        ]
+      },
+      {
+        "name": "Video Production",
+        "aliases": [
+          "videography",
+          "video editing",
+          "filming"
+        ]
+      },
+      {
+        "name": "Photography",
+        "aliases": [
+          "photo editing",
+          "lightroom"
+        ]
+      },
+      {
+        "name": "Podcasting",
+        "aliases": [
+          "audio editing",
+          "audacity"
+        ]
+      },
+      {
+        "name": "Translation",
+        "aliases": [
+          "localization",
+          "localisation",
+          "interpreting",
+          "i18n"
+        ]
+      },
+      {
+        "name": "Public Speaking",
+        "aliases": [
+          "presentations",
+          "keynote speaking",
+          "workshop facilitation"
+        ]
+      },
+      {
+        "name": "Storytelling",
+        "aliases": [
+          "narrative design",
+          "scriptwriting"
+        ]
+      }
+    ],
+    "Core Professional Skills": [
+      {
+        "name": "Communication",
+        "aliases": [
+          "written communication",
+          "verbal communication",
+          "communicated",
+          "communication skills",
+          "stakeholder communication",
+          "client communication"
+        ]
+      },
+      {
+        "name": "Collaboration",
+        "aliases": [
+          "collaborated",
+          "teamwork",
+          "team player",
+          "worked closely with",
+          "partnered with",
+          "cross-team",
+          "liaised with"
+        ]
+      },
+      {
+        "name": "Leadership",
+        "aliases": [
+          "led a team",
+          "team lead",
+          "managed a team",
+          "line management",
+          "supervised",
+          "mentored",
+          "coaching"
+        ]
+      },
+      {
+        "name": "Problem Solving",
+        "aliases": [
+          "problem-solving",
+          "troubleshooting",
+          "root cause analysis",
+          "diagnosed issues"
+        ]
+      },
+      {
+        "name": "Time Management",
+        "aliases": [
+          "prioritising workload",
+          "prioritizing workload",
+          "meeting deadlines",
+          "deadline-driven"
+        ]
+      },
+      {
+        "name": "Critical Thinking",
+        "aliases": [
+          "analytical thinking",
+          "analytical skills"
+        ]
+      },
+      {
+        "name": "Adaptability",
+        "aliases": [
+          "flexible",
+          "fast-paced environment",
+          "ambiguity"
+        ]
+      },
+      {
+        "name": "Attention to Detail",
+        "aliases": [
+          "detail-oriented",
+          "detail oriented",
+          "meticulous",
+          "accuracy"
+        ]
+      },
+      {
+        "name": "Decision Making",
+        "aliases": [
+          "data-driven decisions",
+          "judgement",
+          "judgment"
+        ]
+      },
+      {
+        "name": "Customer Focus",
+        "aliases": [
+          "customer-centric",
+          "client-facing",
+          "customer facing",
+          "user-focused",
+          "guest services",
+          "guest satisfaction",
+          "customer satisfaction",
+          "client satisfaction"
+        ]
+      },
+      {
+        "name": "Multilingual",
+        "aliases": [
+          "bilingual",
+          "fluent in",
+          "native speaker"
+        ]
+      },
+      {
+        "name": "Remote Collaboration",
+        "aliases": [
+          "distributed team",
+          "remote work",
+          "asynchronous communication"
+        ]
+      }
+    ]
+  }
 }

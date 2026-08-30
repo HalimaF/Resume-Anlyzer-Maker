@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CV Maker - Smart Career Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CV Maker — Career Desk</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("sca.theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" || t === "dark"
+              ? t
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          );
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -21,183 +38,276 @@
     <link rel="stylesheet" href="./css/cv-maker.css" />
   </head>
   <body>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
+    <header id="topbar"></header>
 
-    <header class="hero cv-hero">
-      <div class="hero-nav">
-        <a href="./menu.html" class="back-link">
-          <i class="fa-solid fa-arrow-left"></i> Back to Menu
-        </a>
-        <button id="cvThemeToggle" class="theme-btn" aria-label="Toggle dark mode">
-          <i class="fa-solid fa-moon"></i>
-        </button>
+    <main class="container">
+      <div class="page-head">
+        <h1>CV Maker</h1>
+        <p class="lede">
+          Build a CV that parses cleanly. Everything you type appears in the preview immediately and
+          is saved in this browser, so closing the tab does not lose your work.
+        </p>
       </div>
-      <div>
-        <p class="badge"><i class="fa-solid fa-file-pen"></i> Professional CV Builder</p>
-        <h1>Build Your CV</h1>
-        <p class="subtitle">Create a professional resume with guided sections and instant PDF export.</p>
-      </div>
-    </header>
 
-    <main class="container cv-container">
-      <div class="cv-builder-wrapper">
-        <div class="cv-form-section">
-          <div class="cv-top-controls">
-            <div class="form-group">
-              <label for="cvTemplateSelect">CV Template</label>
-              <select id="cvTemplateSelect">
-                <option value="modern">Modern Blue</option>
-                <option value="classic">Classic Serif</option>
-                <option value="minimal">Minimal Mono</option>
+      <div class="builder">
+        <!-- ---------- form ---------- -->
+        <div class="builder-form">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Your details</h2>
+              <span class="save-state" id="saveState"></span>
+            </div>
+
+            <div class="field">
+              <label for="fieldSelect">Your field</label>
+              <select id="fieldSelect" data-field-select>
+                <option value="general">General / other</option>
+                <option value="healthcare">Healthcare &amp; care</option>
+                <option value="education">Education &amp; teaching</option>
+                <option value="finance">Finance, accounting &amp; legal</option>
+                <option value="hr">HR &amp; people</option>
+                <option value="sales">Sales &amp; customer</option>
+                <option value="marketing">Marketing &amp; communications</option>
+                <option value="creative">Design &amp; creative</option>
+                <option value="trades">Trades, operations &amp; manufacturing</option>
+                <option value="technology">Technology &amp; data</option>
               </select>
+              <p class="field-hint">
+                Only changes the worked examples in each box, so you can see what a strong
+                line looks like in your line of work. Nothing is locked to a field.
+              </p>
             </div>
-          </div>
 
-          <div class="form-tabs">
-            <button class="tab-btn active" data-tab="personal">Personal</button>
-            <button class="tab-btn" data-tab="professional">Professional</button>
-            <button class="tab-btn" data-tab="education">Education</button>
-            <button class="tab-btn" data-tab="skills">Skills</button>
-            <button class="tab-btn" data-tab="projects">Projects</button>
-          </div>
+            <div class="tabs" role="tablist" aria-label="CV sections">
+              <button class="tab" role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true" data-tab="personal" type="button">Personal</button>
+              <button class="tab" role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="false" data-tab="experience" type="button">Experience <span class="tab-count" data-count="experience">0</span></button>
+              <button class="tab" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" data-tab="education" type="button">Education <span class="tab-count" data-count="education">0</span></button>
+              <button class="tab" role="tab" id="tab-skills" aria-controls="panel-skills" aria-selected="false" data-tab="skills" type="button">Skills <span class="tab-count" data-count="skills">0</span></button>
+              <button class="tab" role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="false" data-tab="projects" type="button">Projects <span class="tab-count" data-count="projects">0</span></button>
+            </div>
 
-          <!-- Personal Info Tab -->
-          <div class="tab-content active" id="personal-tab">
-            <h3>Personal Information</h3>
-            <div class="form-group">
-              <label>Full Name *</label>
-              <input type="text" id="fullName" placeholder="John Doe" />
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Email *</label>
-                <input type="email" id="email" placeholder="john@example.com" />
+            <!-- personal -->
+            <div class="tabpanel" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal" data-panel="personal">
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input type="text" id="fullName" placeholder="Aisha Rahman" autocomplete="name" />
               </div>
-              <div class="form-group">
-                <label>Phone *</label>
-                <input type="tel" id="phone" placeholder="+1 (555) 123-4567" />
+              <div class="form-row">
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="aisha@example.com" autocomplete="email" />
+                </div>
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" placeholder="+92 300 1234567" autocomplete="tel" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="location">Location</label>
+                  <input type="text" id="location" placeholder="Lahore, Pakistan" />
+                </div>
+                <div class="field">
+                  <label for="title">Professional title</label>
+                  <input type="text" id="title" placeholder="Backend Engineer" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="linkedin">LinkedIn</label>
+                  <input type="url" id="linkedin" placeholder="linkedin.com/in/…" />
+                </div>
+                <div class="field">
+                  <label for="github">GitHub or portfolio</label>
+                  <input type="url" id="github" placeholder="github.com/…" />
+                </div>
+              </div>
+              <div class="field" style="margin-bottom: 0">
+                <label for="summary">Professional summary</label>
+                <textarea id="summary" rows="4" placeholder="Backend engineer with 4 years building high-throughput services. Cut p95 latency 38% across 12 microservices."></textarea>
+                <p class="field-hint">Three lines: your role, your years, and the outcome you are proudest of.</p>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Location</label>
-                <input type="text" id="location" placeholder="City, Country" />
-              </div>
-              <div class="form-group">
-                <label>LinkedIn URL</label>
-                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/..." />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Professional Summary</label>
-              <textarea id="summary" rows="4" placeholder="Brief overview of your professional background and career goals..."></textarea>
-            </div>
-          </div>
 
-          <!-- Professional Experience Tab -->
-          <div class="tab-content" id="professional-tab">
-            <h3>Work Experience</h3>
-            <div id="experienceList"></div>
-            <button class="secondary-btn" id="addExperienceBtn">
-              <i class="fa-solid fa-plus"></i> Add Experience
-            </button>
-
-            <div class="ai-rewrite-panel">
-              <h4><i class="fa-solid fa-wand-magic-sparkles"></i> AI CV Rewriter</h4>
-              <p>Rewrite your summary and experience bullets to better match a target job.</p>
-              <div class="form-group">
-                <label for="jobDescriptionTarget">Target Job Description</label>
-                <textarea
-                  id="jobDescriptionTarget"
-                  rows="5"
-                  placeholder="Paste the target job description to tailor your CV content..."
-                ></textarea>
-              </div>
-              <button class="primary-btn" id="rewriteCvBtn" type="button">
-                <i class="fa-solid fa-robot"></i> Analyze & Rewrite CV
+            <!-- experience -->
+            <div class="tabpanel" role="tabpanel" id="panel-experience" aria-labelledby="tab-experience" data-panel="experience" hidden>
+              <div id="experienceList"></div>
+              <button class="btn btn-secondary" id="addExperience" type="button">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add a role
               </button>
-              <div id="rewriteSuggestions" class="rewrite-suggestions"></div>
+
+              <div class="panel" style="margin-top: 26px; background: var(--surface-sunk)">
+                <h3>Tailor to a job</h3>
+                <p class="muted">
+                  Paste a posting to see which of its requirements your CV does not yet evidence.
+                </p>
+                <div class="field">
+                  <label for="jobDescriptionTarget">Target job description</label>
+                  <textarea id="jobDescriptionTarget" rows="5" placeholder="Paste the posting here…"></textarea>
+                </div>
+                <button class="btn btn-primary" id="rewriteBtn" type="button">
+                  <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                  <span>Check against this job</span>
+                </button>
+                <div id="rewriteOutput" class="rewrite-output"></div>
+              </div>
             </div>
-          </div>
 
-          <!-- Education Tab -->
-          <div class="tab-content" id="education-tab">
-            <h3>Education</h3>
-            <div id="educationList"></div>
-            <button class="secondary-btn" id="addEducationBtn">
-              <i class="fa-solid fa-plus"></i> Add Education
-            </button>
-          </div>
-
-          <!-- Skills Tab -->
-          <div class="tab-content" id="skills-tab">
-            <h3>Skills</h3>
-            <div class="form-group">
-              <label>Add Skills (comma-separated)</label>
-              <textarea id="skillsInput" rows="4" placeholder="Python, JavaScript, React, Node.js, SQL, Docker..."></textarea>
+            <!-- education -->
+            <div class="tabpanel" role="tabpanel" id="panel-education" aria-labelledby="tab-education" data-panel="education" hidden>
+              <div id="educationList"></div>
+              <button class="btn btn-secondary" id="addEducation" type="button">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add a qualification
+              </button>
             </div>
-            <div id="skillsList" class="skills-chips"></div>
-          </div>
 
-          <!-- Projects Tab -->
-          <div class="tab-content" id="projects-tab">
-            <h3>Projects & Portfolio</h3>
-            <div id="projectsList"></div>
-            <button class="secondary-btn" id="addProjectBtn">
-              <i class="fa-solid fa-plus"></i> Add Project
-            </button>
-          </div>
+            <!-- skills -->
+            <div class="tabpanel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" data-panel="skills" hidden>
+              <div class="field">
+                <label for="skillsInput">Skills, separated by commas</label>
+                <textarea id="skillsInput" rows="4" placeholder="Python, Django, PostgreSQL, Docker, Kubernetes, AWS"></textarea>
+                <p class="field-hint">
+                  A plain comma-separated list is what applicant tracking systems parse most
+                  reliably. Avoid tables, columns, and rating bars.
+                </p>
+              </div>
+              <div id="skillsPreview" class="chips"></div>
+            </div>
 
-          <div class="form-actions">
-            <button id="downloadCvBtn" class="primary-btn">
-              <i class="fa-solid fa-download"></i> Download as PDF
-            </button>
-            <button id="previewCvBtn" class="secondary-btn">
-              <i class="fa-solid fa-eye"></i> Preview
-            </button>
+            <!-- projects -->
+            <div class="tabpanel" role="tabpanel" id="panel-projects" aria-labelledby="tab-projects" data-panel="projects" hidden>
+              <div id="projectsList"></div>
+              <button class="btn btn-secondary" id="addProject" type="button">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add a project
+              </button>
+            </div>
+
+            <details class="disclosure" style="margin-top: 24px">
+              <summary>Settings</summary>
+              <div class="disclosure-body">
+                <div class="field" style="margin-bottom: 0">
+                  <label for="apiBase">API address</label>
+                  <input id="apiBase" type="text" autocomplete="off" spellcheck="false" />
+                  <p class="field-hint">
+                    Used only by &ldquo;Score this CV&rdquo; and the job check.
+                    <button
+                      id="apiBaseReset"
+                      type="button"
+                      style="background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font:inherit;text-decoration:underline;text-underline-offset:2px"
+                    >
+                      Reset to default
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <div class="btn-row" style="margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--rule)">
+              <button id="downloadCvBtn" class="btn btn-primary" type="button">
+                <i class="fa-solid fa-print" aria-hidden="true"></i> Save as PDF
+              </button>
+              <button id="analyzeCvBtn" class="btn btn-secondary" type="button">
+                <i class="fa-solid fa-gauge-high" aria-hidden="true"></i> Score this CV
+              </button>
+              <button id="clearCvBtn" class="btn btn-ghost" type="button">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Start over
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Live Preview -->
-        <div class="cv-preview-section">
-          <div id="cvPreview" class="cv-preview">
-            <div class="preview-header">
-              <h2 id="previewName">Your Name</h2>
-              <p id="previewSummary" class="preview-summary"></p>
-              <div class="preview-contact">
-                <span id="previewEmail"></span>
-                <span id="previewPhone"></span>
-                <span id="previewLocation"></span>
-              </div>
+        <!-- ---------- preview ---------- -->
+        <div class="builder-preview">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Preview</h2>
+              <span class="muted" id="lengthHint"></span>
             </div>
 
-            <section id="previewExp" class="preview-section">
-              <h3>Work Experience</h3>
-              <div id="previewExpList"></div>
-            </section>
+            <div class="template-picker" role="group" aria-label="CV template">
+              <button class="template-option" data-template="modern" aria-pressed="true" type="button">
+                <span class="swatch" aria-hidden="true"><b></b><em></em><em></em></span>
+                <span class="template-name">Modern</span>
+                <span class="template-note">Accent rules</span>
+              </button>
+              <button class="template-option" data-template="classic" aria-pressed="false" type="button">
+                <span class="swatch" aria-hidden="true"><b></b><em></em><em></em></span>
+                <span class="template-name">Classic</span>
+                <span class="template-note">Serif, centred</span>
+              </button>
+              <button class="template-option" data-template="minimal" aria-pressed="false" type="button">
+                <span class="swatch" aria-hidden="true"><b></b><em></em><em></em></span>
+                <span class="template-name">Minimal</span>
+                <span class="template-note">Quiet, airy</span>
+              </button>
+              <button class="template-option" data-template="ats" aria-pressed="false" type="button">
+                <span class="swatch" aria-hidden="true"><b></b><em></em><em></em></span>
+                <span class="template-name">ATS Safe</span>
+                <span class="template-note">Max parseability</span>
+              </button>
+            </div>
 
-            <section id="previewEdu" class="preview-section">
-              <h3>Education</h3>
-              <div id="previewEduList"></div>
-            </section>
+            <div class="preview-frame">
+              <article class="cv-doc tpl-modern" id="cvDoc">
+                <header class="cv-header">
+                  <h2 class="cv-name" id="pvName">Your name</h2>
+                  <p class="cv-contact" id="pvTitle" style="font-weight: 600; color: #2a2a2a"></p>
+                  <div class="cv-contact" id="pvContact"></div>
+                </header>
 
-            <section id="previewSkills" class="preview-section">
-              <h3>Skills</h3>
-              <div id="previewSkillsList" class="skills-display"></div>
-            </section>
+                <section class="cv-section" id="pvSummarySection" hidden>
+                  <h3>Summary</h3>
+                  <p id="pvSummary"></p>
+                </section>
 
-            <section id="previewProj" class="preview-section">
-              <h3>Projects</h3>
-              <div id="previewProjList"></div>
-            </section>
+                <section class="cv-section" id="pvExpSection" hidden>
+                  <h3>Experience</h3>
+                  <div id="pvExp"></div>
+                </section>
+
+                <section class="cv-section" id="pvEduSection" hidden>
+                  <h3>Education</h3>
+                  <div id="pvEdu"></div>
+                </section>
+
+                <section class="cv-section" id="pvProjSection" hidden>
+                  <h3>Projects</h3>
+                  <div id="pvProj"></div>
+                </section>
+
+                <section class="cv-section" id="pvSkillsSection" hidden>
+                  <h3>Skills</h3>
+                  <p class="cv-skills" id="pvSkills"></p>
+                </section>
+
+                <p class="cv-placeholder" id="pvEmpty">
+                  Fill in the form and your CV appears here as you type.
+                </p>
+              </article>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Score panel, revealed only after the CV is scored. -->
+      <section class="panel" id="scorePanel" hidden style="margin-top: 22px">
+        <div class="panel-head">
+          <h2>How this CV scores</h2>
+          <span class="muted" id="scoreHeadline"></span>
+        </div>
+        <div id="scoreBody"></div>
+      </section>
     </main>
 
-    <div id="toast" class="toast" role="alert"></div>
+    <footer class="footer">
+      <div class="container">
+        <span>Saved in this browser only. Nothing is uploaded unless you score it.</span>
+        <a href="./index.html">All tools</a>
+      </div>
+    </footer>
 
-    <script src="./js/cv-maker.js"></script>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="./js/cv-maker.js"></script>
   </body>
 </html>

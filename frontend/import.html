@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Import — Career Desk</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("sca.theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" || t === "dark"
+              ? t
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          );
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/import.css" />
+  </head>
+  <body>
+    <header id="topbar"></header>
+
+    <main class="container">
+      <div class="page-head">
+        <h1>Build a CV from what you already have</h1>
+        <p class="lede">
+          Drop your LinkedIn export or an old CV and every field is filled in for you &mdash;
+          roles, dates, education, skills. Then edit whatever needs it.
+        </p>
+      </div>
+
+      <section class="panel">
+        <h2>Drop it here</h2>
+        <p class="muted">
+          Your LinkedIn PDF, or any CV in PDF, DOCX or TXT. Up to 10&nbsp;MB.
+        </p>
+
+        <div id="dropZone" class="dropzone" tabindex="0" role="button" aria-describedby="fileLine">
+          <input id="fileInput" type="file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" hidden />
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <strong>Drop your file here</strong>
+          <span class="small">or click to browse</span>
+        </div>
+
+        <p id="fileLine" class="file-line" role="status">
+          <i class="fa-regular fa-circle" aria-hidden="true"></i>
+          <span>No file chosen yet</span>
+        </p>
+
+        <div class="or-rule"><span>or paste it instead</span></div>
+
+        <div class="field">
+          <label for="pasteBox">Paste your profile or CV text</label>
+          <textarea
+            id="pasteBox"
+            rows="7"
+            placeholder="Open your LinkedIn profile, press Ctrl+A then Ctrl+C, and paste it here. Pasting a profile link on its own will not work — see below for why."
+          ></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button id="importBtn" class="btn btn-primary btn-lg" type="button">
+            <i class="fa-solid fa-file-import" aria-hidden="true"></i>
+            <span>Build my CV</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Shown when someone pastes a bare profile URL. -->
+      <section class="panel" id="urlHelp" hidden>
+        <h2>A profile link on its own cannot be read</h2>
+        <p class="muted">
+          LinkedIn shows a sign-in wall to anything that is not a logged-in browser, and its
+          terms prohibit automated access. No tool can read your profile from the URL alone
+          &mdash; any that claims to is either signed in as you, or guessing.
+        </p>
+        <p class="muted" style="margin-top: 10px">
+          Your own export has everything, and it takes about ten seconds:
+        </p>
+        <ol class="steps">
+          <li><span>Open your LinkedIn profile.</span></li>
+          <li><span>Click <b>More</b> under your headline, then <b>Save to PDF</b>.</span></li>
+          <li><span>Drop that PDF above.</span></li>
+        </ol>
+        <p class="field-hint">
+          No LinkedIn account? Paste your existing CV instead &mdash; it parses the same way.
+        </p>
+      </section>
+
+      <div id="loadingState" class="loading" style="margin-top: 26px" hidden aria-live="polite">
+        <p class="muted" style="margin: 0">Reading your profile&hellip;</p>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+      </div>
+
+      <!-- ---------- parsed result ---------- -->
+      <div class="results" id="results" hidden>
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Here is what we found</h2>
+            <span class="muted" id="sourceLabel"></span>
+          </div>
+          <p class="muted">
+            Check it over. Anything wrong or missing is easy to fix in the next step.
+          </p>
+
+          <div id="warnings"></div>
+
+          <dl class="found" id="foundFields"></dl>
+
+          <div class="btn-row" style="margin-top: 22px">
+            <button id="openInMakerBtn" class="btn btn-primary" type="button">
+              <i class="fa-solid fa-pen-ruler" aria-hidden="true"></i>
+              Open in CV Maker
+            </button>
+            <button id="scoreItBtn" class="btn btn-secondary" type="button">
+              <i class="fa-solid fa-gauge-high" aria-hidden="true"></i>
+              Score it first
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="skillsPanel" hidden>
+          <div class="panel-head">
+            <h2>Skills we recognised</h2>
+            <span class="muted" id="skillCount"></span>
+          </div>
+          <p class="muted">
+            Matched against a catalog of 336 skills across 17 fields &mdash; healthcare,
+            teaching, finance, trades and more, not just technology.
+          </p>
+          <div id="skillGroups"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span>Your file is read once and deleted. Nothing is stored.</span>
+        <a href="./index.html">All tools</a>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="./js/import.js"></script>
+  </body>
+</html>

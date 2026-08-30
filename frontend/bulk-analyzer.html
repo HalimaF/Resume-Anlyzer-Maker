@@ -1,110 +1,206 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bulk CV Analyzer - Smart Career Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bulk Review — Career Desk</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("sca.theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" || t === "dark"
+              ? t
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
+          );
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <div class="ambient ambient-one"></div>
-    <div class="ambient ambient-two"></div>
-
-    <header class="hero">
-      <div class="hero-nav">
-        <a href="./menu.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Menu</a>
-      </div>
-      <div>
-        <p class="badge"><i class="fa-solid fa-people-group"></i> Recruitment Suite</p>
-        <h1>Bulk CV Analyzer</h1>
-        <p class="subtitle">Upload multiple resumes, auto-rank candidates, and generate comparison reports for efficient hiring decisions.</p>
-      </div>
-      <button id="bulkThemeToggle" class="theme-btn" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
-    </header>
+    <header id="topbar"></header>
 
     <main class="container">
-      <section class="panel upload-panel">
-        <h2><i class="fa-solid fa-upload"></i> Upload Resumes</h2>
-        <p class="panel-text">Upload multiple resumes at once (PDF, DOCX, TXT, PNG, JPG, JPEG, WEBP)</p>
+      <div class="page-head">
+        <h1>Bulk Review</h1>
+        <p class="lede">
+          Score up to 25 resumes against one posting and rank them. Every candidate is scored by
+          the same model, so the ordering is comparable rather than impressionistic.
+        </p>
+      </div>
 
-        <label for="bulkApiBase" class="input-label">API Base URL</label>
-        <input id="bulkApiBase" type="text" placeholder="http://localhost:5000" />
-
-        <label for="bulkJobDesc" class="input-label">Job Description (Optional)</label>
-        <textarea id="bulkJobDesc" rows="4" placeholder="Paste job description for targeted candidate matching..."></textarea>
-
-        <div id="bulkDropZone" class="drop-zone" tabindex="0" role="button" aria-label="Upload resumes">
-          <input id="bulkResumeInput" type="file" multiple accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp" hidden />
-          <i class="fa-regular fa-file-lines"></i>
-          <p><strong>Drag & drop</strong> multiple resumes here</p>
-          <p class="small">or click to select files</p>
+      <section class="panel">
+        <h2>The posting</h2>
+        <p class="muted">
+          Optional, but without it every candidate is scored on general resume quality rather than
+          fit for your role.
+        </p>
+        <div class="field">
+          <label for="bulkJobDesc">Job description</label>
+          <textarea
+            id="bulkJobDesc"
+            rows="6"
+            placeholder="Paste the full posting. Boilerplate about benefits and culture is filtered out automatically."
+          ></textarea>
         </div>
 
-        <p id="selectedFileCount" class="selected-file">No files selected</p>
+        <h2 style="margin-top: 26px">The resumes</h2>
+        <p class="muted">PDF, DOCX, TXT, PNG, JPG, or WEBP &mdash; up to 10&nbsp;MB each, 25 per batch.</p>
 
-        <button id="bulkAnalyzeBtn" class="primary-btn"><i class="fa-solid fa-play"></i> Analyze & Rank Candidates</button>
+        <div id="bulkDropZone" class="dropzone" tabindex="0" role="button" aria-describedby="fileSummary">
+          <input
+            id="bulkResumeInput"
+            type="file"
+            multiple
+            accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp"
+            hidden
+          />
+          <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+          <strong>Drop resumes here</strong>
+          <span class="small">or click to select several at once</span>
+        </div>
+
+        <p id="fileSummary" class="file-line" role="status">
+          <i class="fa-regular fa-circle" aria-hidden="true"></i>
+          <span>No files chosen yet</span>
+        </p>
+
+        <details class="disclosure" style="margin-top: 18px">
+          <summary>Settings</summary>
+          <div class="disclosure-body">
+            <div class="field" style="margin-bottom: 0">
+              <label for="apiBase">API address</label>
+              <input id="apiBase" type="text" autocomplete="off" spellcheck="false" />
+              <p class="field-hint">
+                Where the analyzer backend is running.
+                <button
+                  id="apiBaseReset"
+                  type="button"
+                  style="background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font:inherit;text-decoration:underline;text-underline-offset:2px"
+                >
+                  Reset to default
+                </button>
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <div class="btn-row" style="margin-top: 20px">
+          <button id="bulkAnalyzeBtn" class="btn btn-primary btn-lg" type="button">
+            <i class="fa-solid fa-ranking-star" aria-hidden="true"></i>
+            <span>Score and rank</span>
+          </button>
+        </div>
       </section>
 
-      <section id="resultsSection" style="display: none;">
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-ranking-star"></i> Ranked Candidates</h3>
-          
+      <div id="emptyState" class="empty-state" style="margin-top: 26px">
+        <i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i>
+        <h3>No batch scored yet</h3>
+        <p>
+          Add a posting and a folder of resumes. You get a ranked table, a score distribution, and
+          a CSV or JSON export of the shortlist.
+        </p>
+      </div>
+
+      <div id="loadingState" class="loading" style="margin-top: 26px" hidden aria-live="polite">
+        <p class="muted" id="loadingText" style="margin: 0">Reading resumes&hellip;</p>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+        <div class="shimmer"></div>
+      </div>
+
+      <div class="results" id="results" hidden>
+        <section class="panel">
+          <h2>At a glance</h2>
+          <dl class="metrics" id="metrics"></dl>
+        </section>
+
+        <section class="panel" id="failuresPanel" hidden>
+          <h2>Files that could not be read</h2>
+          <ul class="list" id="failuresList"></ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Ranked candidates</h2>
+            <span class="muted" id="tableCount"></span>
+          </div>
           <div class="filter-bar">
-            <input id="candidateSearch" type="text" placeholder="Search candidate name..." />
-            <select id="scoreFilter">
-              <option value="">All Scores</option>
-              <option value="85">Excellent (85+)</option>
-              <option value="70">Good (70+)</option>
-              <option value="55">Fair (55+)</option>
-              <option value="0">All</option>
+            <input id="candidateSearch" type="search" placeholder="Filter by filename…" aria-label="Filter candidates by filename" />
+            <select id="scoreFilter" aria-label="Filter by score band">
+              <option value="0">All scores</option>
+              <option value="85">Ready to send (85+)</option>
+              <option value="70">Nearly there (70+)</option>
+              <option value="55">Needs work (55+)</option>
             </select>
           </div>
-
-          <div id="candidatesTable" class="candidates-table"></div>
-        </article>
-
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-chart-line"></i> Analytics & Insights</h3>
-          <div class="analytics-grid">
-            <div class="metric">
-              <p class="metric-label">Total Candidates</p>
-              <p id="totalCandidates" class="metric-value">0</p>
-            </div>
-            <div class="metric">
-              <p class="metric-label">Average Score</p>
-              <p id="avgScore" class="metric-value">0</p>
-            </div>
-            <div class="metric">
-              <p class="metric-label">Top Candidate</p>
-              <p id="topCandidate" class="metric-value">--</p>
-            </div>
-            <div class="metric">
-              <p class="metric-label">Excellent Fits (85+)</p>
-              <p id="excellentCount" class="metric-value">0</p>
-            </div>
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Candidate</th>
+                  <th>Overall</th>
+                  <th>Skills</th>
+                  <th>ATS</th>
+                  <th>Structure</th>
+                  <th>Percentile</th>
+                </tr>
+              </thead>
+              <tbody id="candidateRows"></tbody>
+            </table>
           </div>
-          
-          <h4 style="margin-top: 24px;">Average Score Distribution</h4>
-          <div id="scoreDistribution" class="distribution-chart"></div>
-        </article>
+        </section>
 
-        <article class="panel result-card wide">
-          <h3><i class="fa-solid fa-download"></i> Export Results</h3>
-          <div style="display: flex; gap: 12px;">
-            <button id="exportCsvBtn" class="secondary-btn"><i class="fa-solid fa-file-csv"></i> Export as CSV</button>
-            <button id="exportPdfBtn" class="secondary-btn"><i class="fa-solid fa-file-pdf"></i> Export Detailed Report</button>
-            <button id="exportJsonBtn" class="secondary-btn"><i class="fa-solid fa-code"></i> Export as JSON</button>
+        <section class="panel">
+          <h2>Score distribution</h2>
+          <p class="muted">How the batch spreads across the four bands.</p>
+          <div class="dist" id="distribution"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Export</h2>
+          <p class="muted">The full ranking with every component score.</p>
+          <div class="btn-row">
+            <button id="exportCsvBtn" class="btn btn-secondary" type="button">
+              <i class="fa-solid fa-file-csv" aria-hidden="true"></i> CSV
+            </button>
+            <button id="exportJsonBtn" class="btn btn-secondary" type="button">
+              <i class="fa-solid fa-code" aria-hidden="true"></i> JSON
+            </button>
           </div>
-        </article>
-      </section>
+        </section>
+      </div>
     </main>
 
-    <div id="toast" class="toast" role="alert"></div>
+    <footer class="footer">
+      <div class="container">
+        <span>Every file is read once and deleted. Nothing is stored.</span>
+        <a href="./index.html">All tools</a>
+      </div>
+    </footer>
 
-    <script src="./js/bulk-analyzer.js"></script>
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="./js/bulk-analyzer.js"></script>
   </body>
 </html>
